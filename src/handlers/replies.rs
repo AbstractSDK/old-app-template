@@ -1,0 +1,1 @@
+const INSTANTIATE_REPLY_ID: u8 = 1u8;
