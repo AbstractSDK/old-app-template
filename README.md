@@ -18,9 +18,19 @@ This is a repository for developing an add-on using [Abstract-OS](https://abstra
 
 ## Instructions
 1. Fork this repository
-2. Update the name of the package in [Cargo.toml](Cargo.toml)
-
-
+2. Update the name of the package in (easiest via find/replace "Template" -> "YourAddOnName"):
+   1. [Cargo.toml](Cargo.toml)
+   2. [src/contract.rs](src/contract.rs)::
+      1. `CONTRACT_NAME`
+      2. `TemplateAddOn` type -> `<YourAddOnName>AddOn`
+      3. `TemplateResult` -> `<YourAddOnName>Result`
+   3. [src/package/msg.rs](src/package/msg.rs)
+      1. `TemplateError` -> `<YourAddOnName>Error`
+      2. `TemplateInstantiateMsg` -> `<YourAddOnName>InstantiateMsg`
+      3. `TemplateQueryMsg` -> `<YourAddOnName>QueryMsg`
+      4. `TemplateExecuteMsg` -> `<YourAddOnName>ExecuteMsg`
+      5. `TemplateReplyMsg` -> `<YourAddOnName>ReplyMsg`
+      6. `TemplateMigrateMsg` -> `<YourAddOnName>MigrateMsg`
 
 ## Commands
 - `cargo build`: Build the add-on
@@ -29,5 +39,5 @@ This is a repository for developing an add-on using [Abstract-OS](https://abstra
 - `cargo doc`: Generate the documentation
 - `cargo clippy`: Run the linter
 
-# Tests
+## Tests
 The test cases covered by this dapp are located in [the README file under src/tests/](src/tests/README.md).

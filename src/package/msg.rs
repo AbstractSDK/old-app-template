@@ -70,6 +70,7 @@ pub enum TemplateQueryMsg {
         page_token: Option<Addr>,
         page_size: Option<u8>,
     },
+    /// Returns the counts of the users in the list
     UserCounts {
         users: Vec<Addr>,
     },
