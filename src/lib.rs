@@ -1,8 +1,8 @@
 pub mod contract;
-mod entrypoint;
 pub mod error;
+pub mod msg;
 mod handlers;
-pub mod package;
+mod state;
 
 // TODO; FIX
 // #[cfg(test)]

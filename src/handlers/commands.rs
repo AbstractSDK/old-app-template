@@ -1,23 +1,25 @@
-use std::collections::BTreeMap;
-use std::ops::Sub;
-
-use abstract_add_on::state::AddOnState;
-use abstract_os::objects::deposit_info::DepositInfo;
-use abstract_os::objects::fee::Fee;
-use abstract_os::objects::{AssetEntry, ChannelEntry, ContractEntry, UncheckedChannelEntry};
-use abstract_os::{EXCHANGE, ICS20};
-use abstract_sdk::cw20::query_supply;
-use abstract_sdk::{Dependency, Exchange};
-use cosmwasm_std::{
-    from_binary, to_binary, Addr, Coin, CosmosMsg, Decimal, Decimal256, Deps, DepsMut, Env,
-    MessageInfo, Order, Response, StdError, StdResult, Uint128, Uint256, WasmMsg,
-};
-use cw20::{Cw20ExecuteMsg, Cw20ReceiveMsg};
-use cw_asset::{Asset, AssetInfo};
+use cosmwasm_std::{DepsMut, Env, MessageInfo, Response, Uint128};
 
 use crate::contract::{TemplateAddOn, TemplateResult};
 use crate::error::TemplateError;
-use crate::package::state::{Config, CONFIG, COUNTS};
+use crate::state::{CONFIG, COUNTS};
+use crate::msg::TemplateExecuteMsg;
+
+/// Handle the `TemplateExecuteMsg`s sent to this add-on.
+pub fn execute_handler(
+    deps: DepsMut,
+    _env: Env,
+    info: MessageInfo,
+    add_on: TemplateAddOn,
+    msg: TemplateExecuteMsg,
+) -> TemplateResult {
+    match msg {
+        TemplateExecuteMsg::UpdateConfig { max_count } => {
+            update_config(deps, info, add_on, max_count)
+        }
+        TemplateExecuteMsg::Increment {} => increment_sender(deps, info, add_on),
+    }
+}
 
 /// Update the application configuration.
 pub fn update_config(
@@ -54,17 +56,16 @@ pub fn increment_sender(
     let user = msg_info.sender;
     let max_count = CONFIG.load(deps.storage)?.max_count;
 
-    COUNTS
-        .update(deps.storage, &user, |old| match old {
-            Some(old) => {
-                let new_val = old.checked_add(Uint128::one())?;
-                if new_val > max_count {
-                    return Err(TemplateError::ExceededMaxCount {});
-                };
-                Ok(new_val)
-            }
-            None => Ok(Uint128::one()),
-        })?;
+    COUNTS.update(deps.storage, &user, |old| match old {
+        Some(old) => {
+            let new_val = old.checked_add(Uint128::one())?;
+            if new_val > max_count {
+                return Err(TemplateError::ExceededMaxCount {});
+            };
+            Ok(new_val)
+        }
+        None => Ok(Uint128::one()),
+    })?;
 
     Ok(Response::new().add_attribute("action", "increment"))
 }

@@ -1,5 +1,5 @@
 use abstract_add_on::AddOnError;
-use cosmwasm_std::{CheckedFromRatioError, Decimal, DecimalRangeExceeded, OverflowError, StdError};
+use cosmwasm_std::{OverflowError, StdError};
 use cw_controllers::AdminError;
 use thiserror::Error;
 

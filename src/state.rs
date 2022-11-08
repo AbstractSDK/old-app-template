@@ -1,6 +1,3 @@
-use abstract_os::add_on::{BaseExecuteMsg, BaseInstantiateMsg, BaseQueryMsg};
-
-use abstract_os::objects::AssetEntry;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
