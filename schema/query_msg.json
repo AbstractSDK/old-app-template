@@ -3,6 +3,20 @@
   "title": "QueryMsg",
   "oneOf": [
     {
+      "description": "An AddOn query message. Forwards the msg to the associated proxy.",
+      "type": "object",
+      "required": [
+        "add_on"
+      ],
+      "properties": {
+        "add_on": {
+          "$ref": "#/definitions/TemplateQueryMsg"
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "description": "A configuration message to whitelist traders.",
       "type": "object",
       "required": [
         "base"
@@ -13,23 +27,13 @@
         }
       },
       "additionalProperties": false
-    },
-    {
-      "description": "Returns [`StateResponse`]",
-      "type": "object",
-      "required": [
-        "state"
-      ],
-      "properties": {
-        "state": {
-          "type": "object",
-          "additionalProperties": false
-        }
-      },
-      "additionalProperties": false
     }
   ],
   "definitions": {
+    "Addr": {
+      "description": "A human readable address.\n\nIn Cosmos, this is typically bech32 encoded. But for multi-chain smart contracts no assumptions should be made other than being UTF-8 encoded and of reasonable length.\n\nThis type represents a validated address. It can be created in the following ways 1. Use `Addr::unchecked(input)` 2. Use `let checked: Addr = deps.api.addr_validate(input)?` 3. Use `let checked: Addr = deps.api.addr_humanize(canonical_addr)?` 4. Deserialize from JSON. This must only be done from JSON that was validated before such as a contract's state. `Addr` must not be used in messages sent by the user because this would result in unvalidated instances.\n\nThis type is immutable. If you really need to mutate it (Really? Are you sure?), create a mutable copy using `let mut mutable = Addr::to_string()` and operate on that `String` instance.",
+      "type": "string"
+    },
     "BaseQueryMsg": {
       "oneOf": [
         {
@@ -55,6 +59,104 @@
           "properties": {
             "admin": {
               "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "TemplateQueryMsg": {
+      "oneOf": [
+        {
+          "description": "Returns [`ConfigResponse`]",
+          "type": "object",
+          "required": [
+            "config"
+          ],
+          "properties": {
+            "config": {
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "description": "Returns the counts of the users Returns [`UserCountsResponse`]",
+          "type": "object",
+          "required": [
+            "user_count_list"
+          ],
+          "properties": {
+            "user_count_list": {
+              "type": "object",
+              "properties": {
+                "page_size": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "format": "uint8",
+                  "minimum": 0.0
+                },
+                "page_token": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/definitions/Addr"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "user_counts"
+          ],
+          "properties": {
+            "user_counts": {
+              "type": "object",
+              "required": [
+                "users"
+              ],
+              "properties": {
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Addr"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "description": "Return the calling user's count if any",
+          "type": "object",
+          "required": [
+            "user_count"
+          ],
+          "properties": {
+            "user_count": {
+              "type": "object",
+              "required": [
+                "user"
+              ],
+              "properties": {
+                "user": {
+                  "$ref": "#/definitions/Addr"
+                }
+              },
               "additionalProperties": false
             }
           },
