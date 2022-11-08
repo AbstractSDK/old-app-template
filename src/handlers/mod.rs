@@ -6,5 +6,5 @@ pub mod reply;
 
 pub use crate::handlers::{
     commands::execute_handler, instantiate::instantiate_handler, migrate::migrate_handler,
-    queries::query_handler,reply::*
+    queries::query_handler, reply::*,
 };

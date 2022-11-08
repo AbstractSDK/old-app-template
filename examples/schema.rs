@@ -2,7 +2,7 @@ use std::env::current_dir;
 use std::fs::create_dir_all;
 
 use abstract_addon_template::contract::TemplateAddOn;
-use abstract_addon_template::package::ConfigResponse;
+use abstract_addon_template::msg::ConfigResponse;
 use cosmwasm_schema::{export_schema, remove_schemas, schema_for};
 
 fn main() {

@@ -1,6 +1,6 @@
 use crate::contract::TemplateAddOn;
-use crate::state::{CONFIG, COUNTS};
 use crate::msg::{ConfigResponse, TemplateQueryMsg, UserCountResponse};
+use crate::state::{CONFIG, COUNTS};
 use cosmwasm_std::{to_binary, Addr, Binary, Deps, Env, StdResult, Uint128};
 
 pub fn query_handler(

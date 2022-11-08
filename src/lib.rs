@@ -1,7 +1,7 @@
 pub mod contract;
 pub mod error;
-pub mod msg;
 mod handlers;
+pub mod msg;
 mod state;
 
 // TODO; FIX

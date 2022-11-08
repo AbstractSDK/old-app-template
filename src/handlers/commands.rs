@@ -2,8 +2,8 @@ use cosmwasm_std::{DepsMut, Env, MessageInfo, Response, Uint128};
 
 use crate::contract::{TemplateAddOn, TemplateResult};
 use crate::error::TemplateError;
-use crate::state::{CONFIG, COUNTS};
 use crate::msg::TemplateExecuteMsg;
+use crate::state::{CONFIG, COUNTS};
 
 /// Handle the `TemplateExecuteMsg`s sent to this add-on.
 pub fn execute_handler(

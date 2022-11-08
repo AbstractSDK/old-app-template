@@ -2,8 +2,8 @@ use cosmwasm_std::{DepsMut, Env, MessageInfo, Response};
 
 use crate::contract::{TemplateAddOn, TemplateResult, CONTRACT_NAME};
 
-use crate::state::{Config, CONFIG, COUNTS};
 use crate::msg::TemplateInstantiateMsg;
+use crate::state::{Config, CONFIG, COUNTS};
 
 /// Initial instantiation of the contract
 pub fn instantiate_handler(
