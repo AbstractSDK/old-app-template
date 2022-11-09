@@ -31,9 +31,6 @@ pub fn query_config(deps: Deps, _env: Env) -> StdResult<ConfigResponse> {
     })
 }
 
-//     let asset_weights: Vec<(AssetEntry, WeightedAsset)> = ASSET_WEIGHTS
-//         .range(deps.storage, None, None, Order::Ascending)
-//         .collect::<Result<Vec<(AssetEntry, WeightedAsset)>, StdError>>()?;
 pub fn query_count(deps: Deps, _env: Env, user: Addr) -> StdResult<UserCountResponse> {
     let count = COUNTS.may_load(deps.storage, &user)?;
     let count = match count {

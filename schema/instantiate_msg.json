@@ -20,7 +20,7 @@
       "description": "custom instantiate msg attributes",
       "allOf": [
         {
-          "$ref": "#/definitions/TemplateInstantiateMsg"
+          "$ref": "#/definitions/{{ addon_instantiate_msg }}"
         }
       ]
     }
@@ -40,7 +40,7 @@
       },
       "additionalProperties": false
     },
-    "TemplateInstantiateMsg": {
+    "{{ addon_instantiate_msg }}": {
       "description": "Init msg",
       "type": "object",
       "required": [

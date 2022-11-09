@@ -11,7 +11,7 @@
 //!               /// Initial user counts
 //!               pub initial_counts: Option<Vec<(String, Uint128)>>,
 //!           };
-//!  
+//!
 //! let create_module_msg = ExecuteMsg::CreateModule {
 //!                 module: Module {
 //!                     info: ModuleInfo {

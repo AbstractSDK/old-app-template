@@ -1,6 +1,6 @@
 use cosmwasm_std::{DepsMut, Env, MessageInfo, Response};
 
-use crate::contract::{TemplateAddOn, TemplateResult, CONTRACT_NAME};
+use crate::contract::{TemplateAddOn, TemplateResult, ADDON_NAME};
 
 use crate::msg::TemplateInstantiateMsg;
 use crate::state::{Config, CONFIG, COUNTS};
@@ -30,5 +30,5 @@ pub fn instantiate_handler(
 
     Ok(Response::new()
         .add_attribute("action", "instantiate")
-        .add_attribute("contract", CONTRACT_NAME))
+        .add_attribute("contract", ADDON_NAME))
 }

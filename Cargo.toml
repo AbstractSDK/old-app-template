@@ -1,7 +1,7 @@
 [package]
-name = "abstract-addon-template"
+name = "{{ project-name }}"
 version = "0.0.1"
-authors = ["CyberHoward <cyberhoward@users.noreply.github.com>", "Adairrr <adairrr@users.noreply.github.com>"]
+authors = ["{{ authors }}"]
 edition = "2021"
 
 exclude = [
@@ -31,20 +31,15 @@ cw20-base = { version = "0.16.0", features = ["library"] }
 schemars = "0.8.1"
 serde = { version = "1.0.103", default-features = false, features = ["derive"] }
 thiserror = { version = "1.0.21" }
-protobuf = { version = "2", features = ["with-bytes"] }
 cw-asset = {version = "2.2.0"}
 semver = "1.0.0"
 lazy_static = "1.4.0"
 
-#abstract-os = { version = "0.1.0-rc.3" }
 #abstract-add-on = { version = "0.1.0-rc.3", features = ["library"] }
 #abstract-sdk = { version = "0.1.0-rc.3" }
-#
 
-# abstract-os = { path = "../../Abstract/contracts/packages/abstract-os" }
 abstract-add-on = { path = "../../Abstract/contracts/packages/abstract-add-on", features = ["library"] }
 abstract-sdk = { path = "../../Abstract/contracts/packages/abstract-sdk" }
-#ibc-client = {path = "../../Abstract/contracts/contracts/native/ibc-client", features = ["library"]  }
 
 
 [dev-dependencies]

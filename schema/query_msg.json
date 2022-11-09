@@ -10,7 +10,7 @@
       ],
       "properties": {
         "add_on": {
-          "$ref": "#/definitions/TemplateQueryMsg"
+          "$ref": "#/definitions/{{ addon_query_msg }}"
         }
       },
       "additionalProperties": false
@@ -66,7 +66,7 @@
         }
       ]
     },
-    "TemplateQueryMsg": {
+    "{{ addon_query_msg }}": {
       "oneOf": [
         {
           "description": "Returns [`ConfigResponse`]",
