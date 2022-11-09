@@ -1,7 +1,7 @@
-[placeholders.include_counter]
-type = "bool"
-prompt = "Include the counter example?"
-default = false
+#[placeholders.include_counter]
+#type = "bool"
+#prompt = "Include the counter example?"
+#default = false
 
 # ignore local folders
 [template]

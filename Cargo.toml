@@ -1,5 +1,5 @@
 [package]
-name = "{{ project-name }}"
+name = "template"
 version = "0.0.1"
 authors = ["{{ authors }}"]
 edition = "2021"

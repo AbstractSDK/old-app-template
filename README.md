@@ -19,9 +19,9 @@ This is a repository for developing an add-on using [Abstract-OS](https://abstra
     - [`msg.rs`](src/package/msg.rs) - contains the messages and responses
 
 ## Instructions
-1. Fork this repository
-2. Update the name of the package in [Cargo.toml](Cargo.toml)
-
+```shell
+cargo generate gh:Abstract-OS/abstract-addon-template
+```
 
 
 ## Commands
