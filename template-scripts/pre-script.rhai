@@ -57,3 +57,5 @@ debug(`addon_query_msg: ${addon_query_msg}`);
 let addon_migrate_msg = pascal_addon + "MigrateMsg";
 variable::set("addon_migrate_msg", addon_migrate_msg);
 debug(`addon_migrate_msg: ${addon_migrate_msg}`);
+
+// rename the script files
