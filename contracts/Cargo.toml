@@ -1,0 +1,51 @@
+[package]
+# TODO rename
+name = "template-addon"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+edition = "2021"
+
+exclude = [
+  # Those files are rust-optimizer artifacts. You might want to commit them for convenience but they should not be part of the source code publication.
+  "contract.wasm",
+  "hash.txt",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# for more explicit tests, cargo test --features=backtraces
+backtraces = ["cosmwasm-std/backtraces"]
+library = []
+
+[dependencies]
+cosmwasm-std = { workspace = true }
+cw-asset = { workspace = true }
+cw-controllers = { version = "0.16.0" }
+cosmwasm-schema = { version = "1.1" }
+cw-storage-plus = "0.16.0"
+cw2 = "0.16.0"
+cw20 = { version = "0.16.0" }
+cw20-base = { version = "0.16.0", features = ["library"] }
+schemars = "0.8.1"
+serde = { version = "1.0.103", default-features = false, features = ["derive"] }
+thiserror = { version = "1.0.21" }
+semver = "1.0.0"
+lazy_static = "1.4.0"
+
+#abstract-add-on = { version = "0.1.0-rc.3", features = ["library"] }
+#abstract-sdk = { version = "0.1.0-rc.3" }
+
+abstract-add-on = { path = "../../../Abstract/contracts/packages/abstract-add-on", features = ["library"] }
+abstract-sdk = { path = "../../../Abstract/contracts/packages/abstract-sdk" }
+
+
+[dev-dependencies]
+memory = { path = "../../../Abstract/contracts/contracts/native/memory" }
+cw-multi-test = { version = "0.14" }
+cw20-base = { version = "0.14", features = ["library"] }
+proxy = { path = "../../../Abstract/contracts/contracts/core/proxy" }

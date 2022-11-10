@@ -1,0 +1,17 @@
+[package]
+name = "interfaces"
+version = "1.1.1"
+edition = "2021"
+#workspace.version = true
+#workspace.authors = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+abstract-os = { workspace = true }
+cw-asset = { workspace = true }
+boot-core = {git = "https://github.com/Abstract-OS/BOOT"}
+boot-plus = {git = "https://github.com/Abstract-OS/BOOT"}
+serde_json = "1.0.79"
+serde = { version = "1.0.103", default-features = false, features = ["derive"] }
+template-addon = { package = "template-addon", path = "../contracts" }
