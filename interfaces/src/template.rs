@@ -1,4 +1,5 @@
 use std::{cmp::min, env, fs::File};
+use boot_abstract::AbstractOS;
 
 use cw_asset::AssetInfoUnchecked;
 
@@ -10,7 +11,7 @@ use template_addon::msg::{
     TemplateExecuteMsg, TemplateInstantiateMsg, TemplateMigrateMsg, TemplateQueryMsg,
 };
 
-// TODO: rename
+/// Contract wrapper for deploying with BOOT
 pub type TemplateAddOn<Chain> = AbstractAddOn<
     Chain,
     TemplateExecuteMsg,

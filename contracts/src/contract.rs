@@ -1,7 +1,7 @@
 use abstract_add_on::export_endpoints;
 use abstract_add_on::AddOnContract;
 use abstract_sdk::EXCHANGE;
-use cosmwasm_std::Binary;
+use cosmwasm_std::{Binary, Response};
 
 use crate::error::TemplateError;
 use crate::handlers::{self};
