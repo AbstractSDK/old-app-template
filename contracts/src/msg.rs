@@ -58,7 +58,7 @@ pub enum TemplateQueryMsg {
     /// Returns the counts of the users
     /// Returns [`UserCountsResponse`]
     UserCountList {
-        page_token: Option<Addr>,
+        page_token: Option<String>,
         page_size: Option<u8>,
     },
     UserCounts {
