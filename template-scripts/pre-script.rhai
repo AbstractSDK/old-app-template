@@ -31,9 +31,9 @@ variable::set("addon_contract", addon_contract);
 debug(`addon_contract: ${addon_contract}`);
 
 // FlashLoanerResult
-let addon_result_name = pascal_addon + "Result";
-variable::set("addon_result_name", addon_result_name);
-debug(`addon_result_name: ${addon_result_name}`);
+let addon_result = pascal_addon + "Result";
+variable::set("addon_result", addon_result);
+debug(`addon_result: ${addon_result}`);
 
 // FlashLoanerError
 let addon_error = pascal_addon + "Error";

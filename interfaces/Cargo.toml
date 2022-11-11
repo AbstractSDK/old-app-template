@@ -13,9 +13,9 @@ cw-asset = { workspace = true }
 cosmwasm-std = { workspace = true }
 #boot-core = {git = "https://github.com/Abstract-OS/BOOT"}
 #boot-plus = {git = "https://github.com/Abstract-OS/BOOT"}
-boot-core = { path = "../../BOOT/boot-core" }
-boot-plus = { path = "../../BOOT/boot-plus" }
-boot-abstract = { path = "../../contracts/packages/boot-abstract" }
+boot-core = { path = "../../../Abstract/BOOT/boot-core" }
+boot-plus = { path = "../../../Abstract/BOOT/boot-plus" }
+boot-abstract = { path = "../../../Abstract/contracts/packages/boot-abstract" }
 serde_json = "1.0.79"
 serde = { version = "1.0.103", default-features = false, features = ["derive"] }
 template-addon = { package = "template-addon-name", path = "../contracts" }

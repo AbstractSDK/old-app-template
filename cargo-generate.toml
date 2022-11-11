@@ -8,9 +8,11 @@
 ignore = [
   ".idea",
   "target",
+  "contracts/target",
+  "scripts/target",
   "schema",
   "template-scripts",
-  "Cargo.lock"
+  "Cargo.lock",
 ]
 
 [hooks]

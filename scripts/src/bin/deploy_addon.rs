@@ -26,7 +26,7 @@ pub fn deploy_addon() -> anyhow::Result<()> {
     let addon_version = Version::parse(ADDON_VERSION)?;
 
     // Setup the environment
-    let (_, sender, chain) = instantiate_daemon_env(network)?;
+    let (_, _sender, chain) = instantiate_daemon_env(network)?;
 
     // Load Abstract Version Control
     let version_control_address: String = env::var("VERSION_CONTROL_ADDRESS").expect("VERSION_CONTROL_ADDRESS must be set");
