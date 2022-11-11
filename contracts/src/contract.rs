@@ -20,9 +20,10 @@ pub type TemplateAddOn = AddOnContract<
 
 pub type TemplateResult = Result<Response, TemplateError>;
 
+/// The namespace for the addon, like "abstract" -> "abstract:template"
+pub const ADDON_NAMESPACE: &str = "template_namespace";
 /// The name of the addon, excluding the namespace
-pub const ADDON_NAME: &str = "{{ project-name }}";
-
+pub const ADDON_NAME: &str = "template_addon_name";
 /// The initial version of the addon, which will use the package version if not altered
 const ADDON_VERSION: &str = env!("CARGO_PKG_VERSION");
 

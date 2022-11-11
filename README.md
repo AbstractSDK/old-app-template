@@ -1,4 +1,6 @@
 # Abstract Addon Template
+
+`RUSTFLAGS='-C link-arg=-s' cargo wasm`
 ## Commands
 `./template-scripts/to-template.sh` - takes the valid rust and turns it into the template
 `./template-scripts/from-template.sh` - takes the templated rust and turns it into valid rust
@@ -10,6 +12,8 @@
 
 ### Generated
 > These are generated from the `project-name` var and if the "addon" suffix is present, it is removed to prevent "AddonAddon"
+- `{{ addon_name }}` - (e.g. `cron_cat`)
+- `{{ addon_migrate_msg }}` - (e.g. `CronCatMigrateMsg`)
 - `{{ addon_migrate_msg }}` - (e.g. `CronCatMigrateMsg`)
 - `{{ addon_instantiate_msg }}` - (e.g. `CronCatInstantiateMsg`)
 - `{{ addon_execute_msg }}` - (e.g. `CronCatExecuteMsg`)

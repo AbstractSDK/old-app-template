@@ -15,6 +15,8 @@ if addon_name.ends_with(ADDON_SUFFIX) {
 
 // flash_loaner
 variable::set("addon_name", addon_name);
+// flash-loaner
+variable::set("addon-name", to_kebab_case(addon_name));
 
 // // flash_loaner
 // variable::set("short_addon_name", addon_name.sub_string(0, addon_name.len - ADDON_SUFFIX.len);

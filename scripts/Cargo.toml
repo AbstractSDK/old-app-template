@@ -7,8 +7,8 @@ edition = "2021"
 
 [dependencies]
 interfaces = { path = "../interfaces" }
-boot-core = { git = "https://github.com/Abstract-OS/BOOT" }
-boot-plus = { git = "https://github.com/Abstract-OS/BOOT" }
+boot-core = { path = "../../BOOT/boot-core" }
+boot-plus = { path = "../../BOOT/boot-plus" }
 boot-abstract = { path = "../../../Abstract/contracts/packages/boot-abstract" }
 log = "0.4.14"
 cosmwasm-std = { version = "1.1" }
@@ -19,4 +19,4 @@ dotenv = "0.15.0"
 env_logger = "0.9.0"
 semver = { version = "1.0.13", default-features = false }
 abstract-os = { path = "../../../Abstract/contracts/packages/abstract-os" }
-template-addon = { package = "template-addon", path = "../contracts" }
+template-addon = { package = "template-addon-name", path = "../contracts" }
