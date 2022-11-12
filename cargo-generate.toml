@@ -14,6 +14,13 @@ ignore = [
   "template-scripts",
   "Cargo.lock",
 ]
+include = [
+  "*.rs",
+  "contracts",
+  "contracts/src/handlers",
+  "interfaces",
+  "scripts"
+]
 
 [hooks]
 pre = ["template-scripts/pre-script.rhai"]
