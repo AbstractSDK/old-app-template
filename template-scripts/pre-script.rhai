@@ -1,5 +1,10 @@
 const ADDON_SUFFIX = "_addon";
 
+fn set_var(name, value) {
+  variable::set(name, value);
+  debug(`${name}: ${value}`);
+}
+
 // Ex: flash-loaner
 let project_name = variable::get("project-name");
 debug(`project_name: ${project_name}`);
@@ -13,51 +18,40 @@ if addon_name.ends_with(ADDON_SUFFIX) {
   addon_name = addon_name.sub_string(0, addon_name.len - ADDON_SUFFIX.len);
 }
 
+
 // flash_loaner
-variable::set("addon_name", addon_name);
+set_var("addon_name", addon_name);
 // flash-loaner
-variable::set("addon-name", to_kebab_case(addon_name));
+set_var("addon-name", to_kebab_case(addon_name));
 
 // // flash_loaner
 // variable::set("short_addon_name", addon_name.sub_string(0, addon_name.len - ADDON_SUFFIX.len);
 
 let pascal_addon = to_pascal_case(addon_name);
-variable::set("pascal_addon", pascal_addon);
-debug(`pascal_addon: ${pascal_addon}`);
 
 // FlashLoanerAddon
-let addon_contract = to_pascal_case(addon_name + ADDON_SUFFIX);
-variable::set("addon_contract", addon_contract);
-debug(`addon_contract: ${addon_contract}`);
+set_var("addon_contract", to_pascal_case(addon_name + ADDON_SUFFIX));
 
 // FlashLoanerResult
-let addon_result = pascal_addon + "Result";
-variable::set("addon_result", addon_result);
-debug(`addon_result: ${addon_result}`);
+set_var("addon_result", pascal_addon + "Result");
 
 // FlashLoanerError
-let addon_error = pascal_addon + "Error";
-variable::set("addon_error", addon_error);
-debug(`addon_error: ${addon_error}`);
+set_var("addon_error", pascal_addon + "Error");
 
 // FlashLoanerExecuteMsg
-let addon_execute_msg = pascal_addon + "ExecuteMsg";
-variable::set("addon_execute_msg", addon_execute_msg);
-debug(`addon_execute_msg: ${addon_execute_msg}`);
+set_var("addon_execute_msg", pascal_addon + "ExecuteMsg");
 
 // FlashLoanerInstantiateMsg
-let addon_instantiate_msg = pascal_addon + "InstantiateMsg";
-variable::set("addon_instantiate_msg", addon_instantiate_msg);
-debug(`addon_instantiate_msg: ${addon_instantiate_msg}`);
+set_var("addon_instantiate_msg", pascal_addon + "InstantiateMsg");
 
 // FlashLoanerQueryMsg
-let addon_query_msg = pascal_addon + "QueryMsg";
-variable::set("addon_query_msg", addon_query_msg);
-debug(`addon_query_msg: ${addon_query_msg}`);
+set_var("addon_query_msg", pascal_addon + "QueryMsg");
 
 // FlashLoanerMigrateMsg
-let addon_migrate_msg = pascal_addon + "MigrateMsg";
-variable::set("addon_migrate_msg", addon_migrate_msg);
-debug(`addon_migrate_msg: ${addon_migrate_msg}`);
+set_var("addon_migrate_msg", pascal_addon + "MigrateMsg");
 
 // rename the script files
+// Rename the old readme to usage
+file::rename("README.md", "USAGE.md")
+// Rename the old usage to readme
+file::rename("TEMPLATE.md", "README.md")
