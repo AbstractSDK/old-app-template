@@ -1,24 +1,35 @@
-# Abstract Addon Template
+# {{ project-name }}
+This is a repository for developing an add-on using [Abstract-OS](https://abstract.money).
 
-`RUSTFLAGS='-C link-arg=-s' cargo wasm`
+## Features
+- Abstracted handlers for `instantiate`, `query`, `execute`, `migrate`
+
+
+## File Structure
+- [`src`](src) - source code
+  - [`contract.rs`](src/contract.rs) - contract implementation with the top-level handlers for `instantiate`, `query`, `execute`, `migrate`
+  - [`handlers`](src/handlers) - contains the handlers for the add-on
+    - [`instantiate.rs`](src/handlers/instantiate.rs) - contains the msg handlers for the `instantiate` entrypoint
+    - [`query.rs`](src/handlers/query.rs) - contains the msg handlers for the `query` entrypoint
+    - [`commands.rs`](src/handlers/execute.rs) - contains the msg handlers for the `execute` entrypoint
+    - [`migrate.rs`](src/handlers/migrate.rs) - contains the msg handlers for the `migrate` entrypoint
+    - [`reply.rs`](src/handlers/reply.rs) - contains the msg handlers for the `reply` entrypoint
+  - [`package`](src/package) - contains the package definitions for the add-on
+    - [`state.rs`](src/package/state.rs) - contains the state of the contract
+    - [`msg.rs`](src/package/msg.rs) - contains the messages and responses
+
+## Instructions
+```shell
+cargo generate gh:Abstract-OS/abstract-addon-template
+```
+
+
 ## Commands
-`./template-scripts/to-template.sh` - takes the valid rust and turns it into the template
-`./template-scripts/from-template.sh` - takes the templated rust and turns it into valid rust
+- `cargo build`: Build the add-on
+- `cargo test`: Run the tests
+- `cargo wasm`: Compile the add-on to wasm
+- `cargo doc`: Generate the documentation
+- `cargo clippy`: Run the linter
 
-## Vars
-### Explicit
-> These vars are either included by default by [`cargo generate`](https://cargo-generate.github.io/cargo-generate/templates/builtin_placeholders.html) or are explicitly defined in the template's [cargo-generate.toml](cargo-generate.toml) file.
-- `{{ project-name }}` - the name of the project (e.g. `cron-cat` or `cron-cat-addon`)
-
-### Generated
-> These are generated from the `project-name` var and if the "addon" suffix is present, it is removed to prevent "AddonAddon"
-- `{{ addon_name }}` - (e.g. `cron_cat`)
-- `{{ addon_migrate_msg }}` - (e.g. `CronCatMigrateMsg`)
-- `{{ addon_migrate_msg }}` - (e.g. `CronCatMigrateMsg`)
-- `{{ addon_instantiate_msg }}` - (e.g. `CronCatInstantiateMsg`)
-- `{{ addon_execute_msg }}` - (e.g. `CronCatExecuteMsg`)
-- `{{ addon_query_msg }}` - (e.g. `CronCatQueryMsg`)
-- `{{ addon_reply_msg }}` - (e.g. `CronCatReplyMsg`)
-- `{{ addon_result }}` - (e.g. `CronCatResult`)
-- `{{ addon_contract }}` - (e.g. `CronCatAddon`)
-
+# Tests
+The test cases covered by this dapp are located in [the README file under src/tests/](src/tests/README.md).
