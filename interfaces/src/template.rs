@@ -12,22 +12,22 @@ use boot_core::{BootError, Contract, Daemon, IndexResponse, TxHandler, TxRespons
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use template_addon::msg::{
-    TemplateExecuteMsg, TemplateInstantiateMsg, TemplateMigrateMsg, TemplateQueryMsg,
+    {{addon_execute_msg}}, {{addon_instantiate_msg}}, {{addon_migrate_msg}}, {{addon_query_msg}},
 };
 use cosmwasm_std::Coin;
 use template_addon::contract::ADDON_NAME;
 
 /// Contract wrapper for deploying with BOOT
 /// @TODO don't wrap using middleware here, but in the boot-abstract layer
-pub type TemplateAddOn<Chain> = AbstractAddOn<
+pub type {{addon_contract}}<Chain> = AbstractAddOn<
     Chain,
-    middleware::ExecuteMsg<BaseExecuteMsg, TemplateExecuteMsg>,
-    middleware::InstantiateMsg<TemplateInstantiateMsg>,
-    middleware::QueryMsg<BaseQueryMsg, TemplateQueryMsg>,
-    middleware::MigrateMsg<TemplateMigrateMsg>,
+    middleware::ExecuteMsg<BaseExecuteMsg, {{addon_execute_msg}}>,
+    middleware::InstantiateMsg<{{addon_instantiate_msg}}>,
+    middleware::QueryMsg<BaseQueryMsg, {{addon_query_msg}}>,
+    middleware::MigrateMsg<{{addon_migrate_msg}}>,
 >;
 
-impl<Chain: TxHandler + Clone> TemplateAddOn<Chain>
+impl<Chain: TxHandler + Clone> {{addon_contract}}<Chain>
 where
     TxResponse<Chain>: IndexResponse,
 {
@@ -46,7 +46,7 @@ where
     }
 
     /// Temporary helper to query the addon explicitly
-    pub fn query_addon<T: Serialize + DeserializeOwned>(&self, query_msg: TemplateQueryMsg) -> Result<T, BootError> {
+    pub fn query_addon<T: Serialize + DeserializeOwned>(&self, query_msg: {{addon_query_msg}}) -> Result<T, BootError> {
         self.query(&middleware::QueryMsg::App(query_msg))
     }
 
@@ -56,7 +56,7 @@ where
     }
 
     /// Temporary helper to execute the addon explicitly
-    pub fn execute_addon(&self, execute_msg: TemplateExecuteMsg, coins: Option<&[Coin]>) -> Result<TxResponse<Chain>, BootError> {
+    pub fn execute_addon(&self, execute_msg: {{addon_execute_msg}}, coins: Option<&[Coin]>) -> Result<TxResponse<Chain>, BootError> {
         self.execute(&middleware::ExecuteMsg::App(execute_msg), coins)
     }
 
