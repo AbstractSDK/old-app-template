@@ -20,7 +20,7 @@ This is a repository for developing an add-on using [Abstract-OS](https://abstra
 
 ## Instructions
 ```shell
-cargo generate gh:Abstract-OS/abstract-addon-template
+cargo generate gh:Abstract-OS/addon-module-template
 ```
 
 
