@@ -5,23 +5,14 @@ This is a repository for developing an add-on using [Abstract-OS](https://abstra
 - Abstracted handlers for `instantiate`, `query`, `execute`, `migrate`
 
 
-## File Structure
-- [`src`](src) - source code
-  - [`contract.rs`](src/contract.rs) - contract implementation with the top-level handlers for `instantiate`, `query`, `execute`, `migrate`
-  - [`handlers`](src/handlers) - contains the handlers for the add-on
-    - [`instantiate.rs`](src/handlers/instantiate.rs) - contains the msg handlers for the `instantiate` entrypoint
-    - [`query.rs`](src/handlers/query.rs) - contains the msg handlers for the `query` entrypoint
-    - [`commands.rs`](src/handlers/execute.rs) - contains the msg handlers for the `execute` entrypoint
-    - [`migrate.rs`](src/handlers/migrate.rs) - contains the msg handlers for the `migrate` entrypoint
-    - [`reply.rs`](src/handlers/reply.rs) - contains the msg handlers for the `reply` entrypoint
-  - [`package`](src/package) - contains the package definitions for the add-on
-    - [`state.rs`](src/package/state.rs) - contains the state of the contract
-    - [`msg.rs`](src/package/msg.rs) - contains the messages and responses
-
 ## Instructions
+### Option 1
+Use the template using [`cargo generate`](https://cargo-generate.github.io/cargo-generate/index.html)
 ```shell
 cargo generate gh:Abstract-OS/addon-module-template
 ```
+### Option 2:
+Fork this repository and use the `untemplated` branch
 
 
 ## Commands
