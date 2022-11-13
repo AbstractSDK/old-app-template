@@ -4,7 +4,7 @@ use cw_controllers::AdminError;
 use thiserror::Error;
 
 #[derive(Error, Debug, PartialEq)]
-pub enum {{addon_error}} {
+pub enum  {{addon_error}} {
     #[error("{0}")]
     Std(#[from] StdError),
 

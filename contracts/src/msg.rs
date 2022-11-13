@@ -5,7 +5,7 @@
 //! ## Creation
 //! The contract can be added on an OS by calling [`ExecuteMsg::CreateModule`](crate::manager::ExecuteMsg::CreateModule) on the manager of the os.
 //! ```ignore
-//! let template_init_msg = InstantiateMsg::{{addon_instantiate_msg}}{
+//! let template_init_msg = InstantiateMsg:: {{addon_instantiate_msg}}{
 //!               /// The initial value for max_count
 //!               pub max_count: Uint128,
 //!               /// Initial user counts
@@ -32,11 +32,11 @@ use cosmwasm_std::{Addr, Uint128};
 
 /// Migrate msg
 #[cosmwasm_schema::cw_serde]
-pub struct {{addon_migrate_msg}} {}
+pub struct  {{addon_migrate_msg}} {}
 
 /// Init msg
 #[cosmwasm_schema::cw_serde]
-pub struct {{addon_instantiate_msg}} {
+pub struct  {{addon_instantiate_msg}} {
     /// The initial value for max_count
     pub max_count: Uint128,
     /// Initial user counts
@@ -44,7 +44,7 @@ pub struct {{addon_instantiate_msg}} {
 }
 
 #[cosmwasm_schema::cw_serde]
-pub enum {{addon_execute_msg}} {
+pub enum  {{addon_execute_msg}} {
     /// Update the configuration for this contract
     UpdateConfig { max_count: Option<Uint128> },
     /// Add a count of 1 to the calling user
@@ -52,7 +52,7 @@ pub enum {{addon_execute_msg}} {
 }
 
 #[cosmwasm_schema::cw_serde]
-pub enum {{addon_query_msg}} {
+pub enum  {{addon_query_msg}} {
     /// Returns [`ConfigResponse`]
     Config {},
     /// Returns the counts of the users

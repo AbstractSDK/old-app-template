@@ -5,6 +5,17 @@
 - `./template-scripts/to-template.sh` - takes the valid rust and turns it into the template
 - `./template-scripts/from-template.sh` - takes the templated rust and turns it into valid rust
 
+### Updating mainline to the latest template
+```shell
+git checkout untemplated
+./template-scripts/to-template.sh
+git checkout mainline
+git merge untemplated --squash
+git checkout --theirs .
+git add .
+git commit -m "Update template ..."
+```
+
 ## Vars
 ### Explicit
 > These vars are either included by default by [`cargo generate`](https://cargo-generate.github.io/cargo-generate/templates/builtin_placeholders.html) or are explicitly defined in the template's [cargo-generate.toml](cargo-generate.toml) file.

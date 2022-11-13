@@ -1,6 +1,6 @@
 [package]
 # TODO rename
-name = "{{addon-name}}"
+name = " {{addon-name}}"
 version.workspace = true
 authors.workspace = true
 description.workspace = true
