@@ -52,6 +52,6 @@ set_var("addon_migrate_msg", pascal_addon + "MigrateMsg");
 
 // rename the script files
 // Rename the old readme to usage
-file::rename("README.md", "USAGE.md")
+file::rename("README.md", "USAGE.md");
 // Rename the old usage to readme
-file::rename("TEMPLATE.md", "README.md")
+file::rename("TEMPLATE.md", "README.md");
