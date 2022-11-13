@@ -8,9 +8,9 @@ use boot_core::{
     networks::juno::{JUNO_DAEMON, UNI_5},
 };
 use cosmwasm_std::{Addr, Coin, Empty};
-use interfaces::{template, template::TemplateAddOn};
+use interfaces::{template, template:: {{addon_contract}}};
 // use template_addon::msg::ConfigResponse;
-use template_addon::msg::{TemplateExecuteMsg, TemplateInstantiateMsg, TemplateMigrateMsg, TemplateQueryMsg};
+use template_addon::msg::{ {{addon_execute_msg}},  {{addon_instantiate_msg}},  {{addon_migrate_msg}},  {{addon_query_msg}}};
 
 use log::info;
 use semver::Version;
@@ -35,13 +35,13 @@ pub fn deploy_addon() -> anyhow::Result<()> {
 
     // Upload and register your module
     let addon_name = format!("{}:{}", ADDON_NAMESPACE, ADDON_NAME);
-    let mut add_on = TemplateAddOn::new(&addon_name, &chain);
+    let mut add_on =  {{addon_contract}}::new(&addon_name, &chain);
     version_control.upload_and_register_module(&mut add_on, &addon_version)?;
 
     // Example queries
     // add_on.query_base(BaseQueryMsg::Admin {})?;
 
-    // let add_on_config: ConfigResponse = add_on.query_addon(TemplateQueryMsg::Config {})?;
+    // let add_on_config: ConfigResponse = add_on.query_addon( {{addon_query_msg}}::Config {})?;
 
     // TODO: Attach to an OS
 
