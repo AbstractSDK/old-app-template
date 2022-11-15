@@ -37,11 +37,8 @@ thiserror = { version = "1.0.21" }
 semver = "1.0.0"
 lazy_static = "1.4.0"
 
-#abstract-add-on = { version = "0.1.0-rc.3", features = ["library"] }
-#abstract-sdk = { version = "0.1.0-rc.3" }
-
-abstract-add-on = { path = "../../../Abstract/contracts/packages/abstract-add-on", features = ["library"] }
-abstract-sdk = { path = "../../../Abstract/contracts/packages/abstract-sdk" }
+abstract-add-on = { version = "0.2.0-beta.2", features = ["library"] }
+abstract-sdk = "0.2.0-beta.2"
 
 
 [dev-dependencies]
