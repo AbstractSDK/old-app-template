@@ -39,10 +39,3 @@ lazy_static = "1.4.0"
 
 abstract-add-on = { version = "0.2.0-beta.2", features = ["library"] }
 abstract-sdk = "0.2.0-beta.2"
-
-
-[dev-dependencies]
-memory = { path = "../../../Abstract/contracts/contracts/native/memory" }
-cw-multi-test = { version = "0.14" }
-cw20-base = { version = "0.14", features = ["library"] }
-proxy = { path = "../../../Abstract/contracts/contracts/core/proxy" }
