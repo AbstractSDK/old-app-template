@@ -1,18 +1,13 @@
 use std::env;
-use abstract_os::add_on::BaseQueryMsg;
-use abstract_os::{middleware, VERSION_CONTROL};
-use boot_abstract::memory::Memory;
-use boot_abstract::version_control::VersionControl;
-use boot_core::{
-    instantiate_daemon_env,
-    networks::juno::{JUNO_DAEMON, UNI_5},
-};
-use cosmwasm_std::{Addr, Coin, Empty};
-use interfaces::{template, template::TemplateAddOn};
-// use template_addon::msg::ConfigResponse;
-use template_addon::msg::{TemplateExecuteMsg, TemplateInstantiateMsg, TemplateMigrateMsg, TemplateQueryMsg};
 
-use log::info;
+use abstract_os::VERSION_CONTROL;
+
+use boot_abstract::version_control::VersionControl;
+use boot_core::{instantiate_daemon_env, networks::juno::JUNO_DAEMON};
+use cosmwasm_std::Addr;
+use interfaces::template::TemplateAddOn;
+// use template_addon::msg::ConfigResponse;
+
 use semver::Version;
 use template_addon::contract::{ADDON_NAME, ADDON_NAMESPACE};
 
@@ -29,9 +24,14 @@ pub fn deploy_addon() -> anyhow::Result<()> {
     let (_, _sender, chain) = instantiate_daemon_env(network)?;
 
     // Load Abstract Version Control
-    let version_control_address: String = env::var("VERSION_CONTROL_ADDRESS").expect("VERSION_CONTROL_ADDRESS must be set");
+    let version_control_address: String =
+        env::var("VERSION_CONTROL_ADDRESS").expect("VERSION_CONTROL_ADDRESS must be set");
 
-    let version_control = VersionControl::new(VERSION_CONTROL, &chain, Some(&Addr::unchecked(version_control_address)));
+    let version_control = VersionControl::new(
+        VERSION_CONTROL,
+        &chain,
+        Some(&Addr::unchecked(version_control_address)),
+    );
 
     // Upload and register your module
     let addon_name = format!("{}:{}", ADDON_NAMESPACE, ADDON_NAME);

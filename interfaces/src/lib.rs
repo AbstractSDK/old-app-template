@@ -1,6 +1,5 @@
 use boot_core::{Contract, IndexResponse, TxHandler};
 
-use abstract_os::middleware;
 use serde::Serialize;
 use std::fmt::Debug;
 use std::ops::{Deref, DerefMut};
