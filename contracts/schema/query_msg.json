@@ -10,7 +10,7 @@
       ],
       "properties": {
         "app": {
-          "$ref": "#/definitions/{{ addon_query_msg }}"
+          "$ref": "#/definitions/{{ app_query_msg }}"
         }
       },
       "additionalProperties": false
@@ -37,7 +37,7 @@
     "BaseQueryMsg": {
       "oneOf": [
         {
-          "description": "Returns [`AddOnConfigResponse`]",
+          "description": "Returns [`AppConfigResponse`]",
           "type": "object",
           "required": [
             "config"
@@ -66,7 +66,7 @@
         }
       ]
     },
-    "{{ addon_query_msg }}": {
+    "{{ app_query_msg }}": {
       "oneOf": [
         {
           "description": "Returns [`ConfigResponse`]",

@@ -1,8 +1,8 @@
 [alias]
-wasm = "build --package template-addon-name --release --target wasm32-unknown-unknown"
+wasm = "build --package template-app-name --release --target wasm32-unknown-unknown"
 unit-test = "test --lib"
 schema = "run --example schema"
-deploy = "run --package scripts --bin deploy_addon"
+deploy = "run --package scripts --bin deploy_app"
 #optimize =
 
 [env]

@@ -1,8 +1,8 @@
 use std::env::current_dir;
 use std::fs::create_dir_all;
 
-use abstract_addon_template::contract::TemplateApp;
-use abstract_addon_template::msg::ConfigResponse;
+use template_app_name::contract::TemplateApp;
+use template_app_name::msg::ConfigResponse;
 use cosmwasm_schema::{export_schema, remove_schemas, schema_for};
 
 fn main() {

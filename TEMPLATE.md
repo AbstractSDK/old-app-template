@@ -14,4 +14,4 @@ This is a smart-contract add-on using [Abstract-OS](https://abstract.money).
 
 ## Deployment
 By running `cargo deploy`, the add-on will be deployed to Abstract Version Control under
-the identifier: `{{username}}:{{addon_name}}`.
+the identifier: `{{username}}:{{app_name}}`.

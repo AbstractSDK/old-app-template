@@ -6,8 +6,8 @@ use boot_core::{BootError, Contract, IndexResponse, TxHandler, TxResponse};
 use cosmwasm_std::Coin;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-use template_addon::contract::ADDON_NAME;
-use template_addon::msg::{
+use template_app::contract::ADDON_NAME;
+use template_app::msg::{
     TemplateExecuteMsg, TemplateInstantiateMsg, TemplateMigrateMsg, TemplateQueryMsg,
 };
 
@@ -39,15 +39,15 @@ where
         )
     }
 
-    /// Temporary helper to query the addon explicitly
-    pub fn query_addon<T: Serialize + DeserializeOwned>(
+    /// Temporary helper to query the app explicitly
+    pub fn query_app<T: Serialize + DeserializeOwned>(
         &self,
         query_msg: TemplateQueryMsg,
     ) -> Result<T, BootError> {
         self.query(&base::QueryMsg::App(query_msg))
     }
 
-    /// Temporary helper to query the addon base explicitly
+    /// Temporary helper to query the app base explicitly
     pub fn query_base<T: Serialize + DeserializeOwned>(
         &self,
         query_msg: BaseQueryMsg,
@@ -55,8 +55,8 @@ where
         self.query(&base::QueryMsg::Base(query_msg))
     }
 
-    /// Temporary helper to execute the addon explicitly
-    pub fn execute_addon(
+    /// Temporary helper to execute the app explicitly
+    pub fn execute_app(
         &self,
         execute_msg: TemplateExecuteMsg,
         coins: Option<&[Coin]>,
@@ -64,7 +64,7 @@ where
         self.execute(&base::ExecuteMsg::App(execute_msg), coins)
     }
 
-    /// Temporary helper to execute the addon base explicitly
+    /// Temporary helper to execute the app base explicitly
     pub fn execute_base(
         &self,
         execute_msg: BaseExecuteMsg,

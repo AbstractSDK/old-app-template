@@ -20,17 +20,17 @@ pub type TemplateApp = AppContract<
 
 pub type TemplateResult = Result<Response, TemplateError>;
 
-/// The namespace for the addon, like "abstract" -> "abstract:template"
+/// The namespace for the app, like "abstract" -> "abstract:template"
 pub const ADDON_NAMESPACE: &str = "template_namespace";
-/// The name of the addon, excluding the namespace
-pub const ADDON_NAME: &str = "template_addon_name";
-/// The initial version of the addon, which will use the package version if not altered
+/// The name of the app, excluding the namespace
+pub const ADDON_NAME: &str = "template_app_name";
+/// The initial version of the app, which will use the package version if not altered
 const ADDON_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Expected replies
 pub const EXAMPLE_REPLY_ID: u64 = 1;
 
-/// Used as the foundation for building your addon.
+/// Used as the foundation for building your app.
 /// All entrypoints are executed through this const (`instantiate`, `query`, `execute`, `migrate`)
 /// The `dependencies` are Abstract API dependencies in the format: Vec(`namespace:contract_name`)
 const ADDON: TemplateApp = TemplateApp::new(ADDON_NAME, ADDON_VERSION)

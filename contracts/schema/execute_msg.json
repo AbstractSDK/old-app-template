@@ -11,7 +11,7 @@
       ],
       "properties": {
         "request": {
-          "$ref": "#/definitions/{{ addon_execute_msg }}"
+          "$ref": "#/definitions/{{ app_execute_msg }}"
         }
       },
       "additionalProperties": false
@@ -138,7 +138,7 @@
         }
       ]
     },
-    "{{ addon_execute_msg }}": {
+    "{{ app_execute_msg }}": {
       "oneOf": [
         {
           "description": "Update the configuration for this contract",
