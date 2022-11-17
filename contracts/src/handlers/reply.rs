@@ -1,13 +1,13 @@
 use cosmwasm_std::{DepsMut, Env, Reply};
 
-use crate::contract::{ {{addon_contract}},  {{addon_result}}};
+use crate::contract::{ {{app_contract}},  {{app_result}}};
 
 pub fn example_reply_handler(
     _deps: DepsMut,
     _env: Env,
-    _add_on:  {{addon_contract}},
+    _app:  {{app_contract}},
     _reply: Reply,
-) ->  {{addon_result}} {
+) ->  {{app_result}} {
     // Logic to execute on example reply
     todo!()
 }

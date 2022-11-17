@@ -1,10 +1,10 @@
-use abstract_add_on::AddOnError;
+use abstract_app::AppError;
 use cosmwasm_std::{OverflowError, StdError};
 use cw_controllers::AdminError;
 use thiserror::Error;
 
 #[derive(Error, Debug, PartialEq)]
-pub enum  {{addon_error}} {
+pub enum  {{app_error}} {
     #[error("{0}")]
     Std(#[from] StdError),
 
@@ -12,7 +12,7 @@ pub enum  {{addon_error}} {
     Admin(#[from] AdminError),
 
     #[error("{0}")]
-    DappError(#[from] AddOnError),
+    DappError(#[from] AppError),
 
     #[error("{0}")]
     OverflowError(#[from] OverflowError),

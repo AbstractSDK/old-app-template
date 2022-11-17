@@ -1,33 +1,27 @@
-use abstract_os::add_on::{BaseExecuteMsg, BaseQueryMsg};
-use abstract_os::middleware;
-use boot_abstract::AbstractOS;
-use std::{cmp::min, env, fs::File};
+use abstract_os::app::{BaseExecuteMsg, BaseQueryMsg};
+use abstract_os::base;
 
-use cw_asset::AssetInfoUnchecked;
-
-use serde_json::from_reader;
-
-use crate::AbstractAddOn;
-use boot_core::{BootError, Contract, Daemon, IndexResponse, TxHandler, TxResponse};
+use crate::AbstractApp;
+use boot_core::{BootError, Contract, IndexResponse, TxHandler, TxResponse};
+use cosmwasm_std::Coin;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-use template_addon::msg::{
-     {{addon_execute_msg}},  {{addon_instantiate_msg}},  {{addon_migrate_msg}},  {{addon_query_msg}},
+use template_app::contract::ADDON_NAME;
+use template_app::msg::{
+     {{app_execute_msg}},  {{app_instantiate_msg}},  {{app_migrate_msg}},  {{app_query_msg}},
 };
-use cosmwasm_std::Coin;
-use template_addon::contract::ADDON_NAME;
 
 /// Contract wrapper for deploying with BOOT
-/// @TODO don't wrap using middleware here, but in the boot-abstract layer
-pub type  {{addon_contract}}<Chain> = AbstractAddOn<
+/// @TODO don't wrap using base here, but in the abstract-boot layer
+pub type  {{app_contract}}<Chain> = AbstractApp<
     Chain,
-    middleware::ExecuteMsg<BaseExecuteMsg,  {{addon_execute_msg}}>,
-    middleware::InstantiateMsg< {{addon_instantiate_msg}}>,
-    middleware::QueryMsg<BaseQueryMsg,  {{addon_query_msg}}>,
-    middleware::MigrateMsg< {{addon_migrate_msg}}>,
+    base::ExecuteMsg<BaseExecuteMsg,  {{app_execute_msg}}>,
+    base::InstantiateMsg< {{app_instantiate_msg}}>,
+    base::QueryMsg<BaseQueryMsg,  {{app_query_msg}}>,
+    base::MigrateMsg< {{app_migrate_msg}}>,
 >;
 
-impl<Chain: TxHandler + Clone>  {{addon_contract}}<Chain>
+impl<Chain: TxHandler + Clone>  {{app_contract}}<Chain>
 where
     TxResponse<Chain>: IndexResponse,
 {
@@ -45,24 +39,37 @@ where
         )
     }
 
-    /// Temporary helper to query the addon explicitly
-    pub fn query_addon<T: Serialize + DeserializeOwned>(&self, query_msg:  {{addon_query_msg}}) -> Result<T, BootError> {
-        self.query(&middleware::QueryMsg::App(query_msg))
+    /// Temporary helper to query the app explicitly
+    pub fn query_app<T: Serialize + DeserializeOwned>(
+        &self,
+        query_msg:  {{app_query_msg}},
+    ) -> Result<T, BootError> {
+        self.query(&base::QueryMsg::App(query_msg))
     }
 
-    /// Temporary helper to query the addon base explicitly
-    pub fn query_base<T: Serialize + DeserializeOwned>(&self, query_msg: BaseQueryMsg) -> Result<T, BootError> {
-        self.query(&middleware::QueryMsg::Base(query_msg))
+    /// Temporary helper to query the app base explicitly
+    pub fn query_base<T: Serialize + DeserializeOwned>(
+        &self,
+        query_msg: BaseQueryMsg,
+    ) -> Result<T, BootError> {
+        self.query(&base::QueryMsg::Base(query_msg))
     }
 
-    /// Temporary helper to execute the addon explicitly
-    pub fn execute_addon(&self, execute_msg:  {{addon_execute_msg}}, coins: Option<&[Coin]>) -> Result<TxResponse<Chain>, BootError> {
-        self.execute(&middleware::ExecuteMsg::App(execute_msg), coins)
+    /// Temporary helper to execute the app explicitly
+    pub fn execute_app(
+        &self,
+        execute_msg:  {{app_execute_msg}},
+        coins: Option<&[Coin]>,
+    ) -> Result<TxResponse<Chain>, BootError> {
+        self.execute(&base::ExecuteMsg::App(execute_msg), coins)
     }
 
-    /// Temporary helper to execute the addon base explicitly
-    pub fn execute_base(&self, execute_msg: BaseExecuteMsg, coins: Option<&[Coin]>) -> Result<TxResponse<Chain>, BootError> {
-        self.execute(&middleware::ExecuteMsg::Base(execute_msg), coins)
+    /// Temporary helper to execute the app base explicitly
+    pub fn execute_base(
+        &self,
+        execute_msg: BaseExecuteMsg,
+        coins: Option<&[Coin]>,
+    ) -> Result<TxResponse<Chain>, BootError> {
+        self.execute(&base::ExecuteMsg::Base(execute_msg), coins)
     }
 }
-

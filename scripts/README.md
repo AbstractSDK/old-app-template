@@ -8,4 +8,4 @@ This directory contains scripts that are used to deploy and integration test the
 
 
 ## Commands
-- `cargo run --bin deploy_addon` - deploys the add-on to the configured network
+- `cargo run --bin deploy_app` - deploys the add-on to the configured network
