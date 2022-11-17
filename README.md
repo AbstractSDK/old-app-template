@@ -10,7 +10,7 @@ It includes a template for the app module, as well as deployment scripts.
 ### Option 1
 Use the template using [`cargo generate`](https://cargo-generate.github.io/cargo-generate/index.html)
 ```shell
-cargo generate gh:Abstract-OS/app-module-template
+cargo generate gh:Abstract-OS/app-module-template -b template
 ```
 ### Option 2:
 Fork this repository and use the `untemplated` branch.
