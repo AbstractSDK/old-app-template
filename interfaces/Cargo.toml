@@ -11,9 +11,9 @@ edition = "2021"
 abstract-os = { workspace = true }
 cw-asset = { workspace = true }
 cosmwasm-std = { workspace = true }
-boot-core = { path = "../../../Abstract/BOOT/boot-core" }
-boot-plus = { path = "../../../Abstract/BOOT/boot-plus" }
-boot-abstract = { path = "../../../Abstract/contracts/packages/boot-abstract" }
+boot-core = "0.1.1"
+boot-plus = "0.1.1"
+abstract-boot = "0.2.0-beta.4"
 serde_json = "1.0.79"
 serde = { version = "1.0.103", default-features = false, features = ["derive"] }
 template-app = { package = "template-app-name", path = "../contracts" }

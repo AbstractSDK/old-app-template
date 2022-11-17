@@ -12,7 +12,7 @@ use template_app::msg::{
 };
 
 /// Contract wrapper for deploying with BOOT
-/// @TODO don't wrap using base here, but in the boot-abstract layer
+/// @TODO don't wrap using base here, but in the abstract-boot layer
 pub type TemplateApp<Chain> = AbstractApp<
     Chain,
     base::ExecuteMsg<BaseExecuteMsg, TemplateExecuteMsg>,

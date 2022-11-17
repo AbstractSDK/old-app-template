@@ -12,4 +12,3 @@ sed -i '' -e 's/TemplateInstantiateMsg/ {{app_instantiate_msg}}/g' ./**/*.rs
 sed -i '' -e 's/TemplateResult/ {{app_result}}/g' ./**/*.rs
 sed -i '' -e 's/TemplateError/ {{app_error}}/g' ./**/*.rs
 sed -i '' -e 's/TemplateApp/ {{app_contract}}/g' ./**/*.rs
-c
