@@ -4,7 +4,7 @@
   "description": "Interface to the App.",
   "oneOf": [
     {
-      "description": "An Add-On request.",
+      "description": "An App request.",
       "type": "object",
       "required": [
         "request"

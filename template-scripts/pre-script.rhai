@@ -1,4 +1,4 @@
-const ADDON_SUFFIX = "_app";
+const APP_SUFFIX = "_app";
 
 fn set_var(name, value) {
   variable::set(name, value);
@@ -14,8 +14,8 @@ let app_name = to_snake_case(project_name);
 
 
 // check for the app suffix and remove it if present
-if app_name.ends_with(ADDON_SUFFIX) {
-  app_name = app_name.sub_string(0, app_name.len - ADDON_SUFFIX.len);
+if app_name.ends_with(APP_SUFFIX) {
+  app_name = app_name.sub_string(0, app_name.len - APP_SUFFIX.len);
 }
 
 
@@ -25,12 +25,12 @@ set_var("app_name", app_name);
 set_var("app-name", to_kebab_case(app_name));
 
 // // flash_loaner
-// variable::set("short_app_name", app_name.sub_string(0, app_name.len - ADDON_SUFFIX.len);
+// variable::set("short_app_name", app_name.sub_string(0, app_name.len - APP_SUFFIX.len);
 
 let pascal_app = to_pascal_case(app_name);
 
 // FlashLoanerApp
-set_var("app_contract", to_pascal_case(app_name + ADDON_SUFFIX));
+set_var("app_contract", to_pascal_case(app_name + APP_SUFFIX));
 
 // FlashLoanerResult
 set_var("app_result", pascal_app + "Result");

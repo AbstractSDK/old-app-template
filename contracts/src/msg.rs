@@ -1,6 +1,6 @@
-//! # Add-On Template
+//! # App Template
 //!
-//! `your_namespace::template` is an add-on which allows users to ...
+//! `your_namespace::template` is an app which allows users to ...
 //!
 //! ## Creation
 //! The contract can be added on an OS by calling [`ExecuteMsg::CreateModule`](crate::manager::ExecuteMsg::CreateModule) on the manager of the os.

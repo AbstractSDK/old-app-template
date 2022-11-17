@@ -5,7 +5,7 @@ use crate::error::TemplateError;
 use crate::msg::TemplateExecuteMsg;
 use crate::state::{CONFIG, COUNTS};
 
-/// Handle the `TemplateExecuteMsg`s sent to this add-on.
+/// Handle the `TemplateExecuteMsg`s sent to this app.
 pub fn execute_handler(
     deps: DepsMut,
     _env: Env,

@@ -9,7 +9,7 @@ use crate::msg::{
     TemplateExecuteMsg, TemplateInstantiateMsg, TemplateMigrateMsg, TemplateQueryMsg,
 };
 
-// As an add-on writer, the only changes necessary to this file are with the handlers and API dependencies on the `TEMPLATE_ADDON` const.
+// As an app writer, the only changes necessary to this file are with the handlers and API dependencies on the `TEMPLATE_APP` const.
 pub type TemplateApp = AppContract<
     TemplateError,
     TemplateExecuteMsg,
@@ -21,11 +21,11 @@ pub type TemplateApp = AppContract<
 pub type TemplateResult = Result<Response, TemplateError>;
 
 /// The namespace for the app, like "abstract" -> "abstract:template"
-pub const ADDON_NAMESPACE: &str = "template_namespace";
+pub const APP_NAMESPACE: &str = "template_namespace";
 /// The name of the app, excluding the namespace
-pub const ADDON_NAME: &str = "template_app_name";
+pub const APP_NAME: &str = "template_app_name";
 /// The initial version of the app, which will use the package version if not altered
-const ADDON_VERSION: &str = env!("CARGO_PKG_VERSION");
+const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Expected replies
 pub const EXAMPLE_REPLY_ID: u64 = 1;
@@ -33,7 +33,7 @@ pub const EXAMPLE_REPLY_ID: u64 = 1;
 /// Used as the foundation for building your app.
 /// All entrypoints are executed through this const (`instantiate`, `query`, `execute`, `migrate`)
 /// The `dependencies` are Abstract API dependencies in the format: Vec(`namespace:contract_name`)
-const ADDON: TemplateApp = TemplateApp::new(ADDON_NAME, ADDON_VERSION)
+const APP: TemplateApp = TemplateApp::new(APP_NAME, APP_VERSION)
     .with_instantiate(handlers::instantiate_handler)
     .with_query(handlers::query_handler)
     .with_execute(handlers::execute_handler)
@@ -44,4 +44,4 @@ const ADDON: TemplateApp = TemplateApp::new(ADDON_NAME, ADDON_VERSION)
 // don't export endpoints when imported as library
 #[cfg(not(feature = "library"))]
 // Export the endpoints for this contract
-export_endpoints!(ADDON, TemplateApp);
+export_endpoints!(APP, TemplateApp);
