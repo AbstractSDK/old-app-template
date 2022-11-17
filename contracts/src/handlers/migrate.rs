@@ -1,16 +1,16 @@
 use cosmwasm_std::{DepsMut, Env, Response};
 
-use crate::contract::{TemplateApp, TemplateResult};
+use crate::contract::{ {{app_contract}},  {{app_result}}};
 
-use crate::msg::TemplateMigrateMsg;
+use crate::msg:: {{app_migrate_msg}};
 
 /// Unused for now but provided here as an example
 /// Contract version is migrated automatically
 pub fn migrate_handler(
     _deps: DepsMut,
     _env: Env,
-    _app: TemplateApp,
-    _msg: TemplateMigrateMsg,
-) -> TemplateResult {
+    _app:  {{app_contract}},
+    _msg:  {{app_migrate_msg}},
+) ->  {{app_result}} {
     Ok(Response::default())
 }

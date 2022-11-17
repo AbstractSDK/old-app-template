@@ -1,6 +1,6 @@
 [package]
 # TODO rename
-name = "template-app-name"
+name = " {{app-name}}"
 version.workspace = true
 authors.workspace = true
 description.workspace = true

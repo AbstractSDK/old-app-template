@@ -1,5 +1,5 @@
-use crate::contract::TemplateApp;
-use crate::msg::{ConfigResponse, TemplateQueryMsg, UserCountResponse, UserCountsResponse};
+use crate::contract:: {{app_contract}};
+use crate::msg::{ConfigResponse,  {{app_query_msg}}, UserCountResponse, UserCountsResponse};
 use crate::state::{CONFIG, COUNTS};
 use cosmwasm_std::{to_binary, Addr, Binary, Deps, Env, Order, StdResult, Uint128};
 use cw_storage_plus::Bound;
@@ -11,14 +11,14 @@ const MAX_PAGE_SIZE: u8 = 20;
 pub fn query_handler(
     deps: Deps,
     env: Env,
-    _app: &TemplateApp,
-    msg: TemplateQueryMsg,
+    _app: & {{app_contract}},
+    msg:  {{app_query_msg}},
 ) -> StdResult<Binary> {
     match msg {
-        TemplateQueryMsg::Config {} => to_binary(&query_config(deps, env)?),
-        TemplateQueryMsg::UserCount { user } => to_binary(&query_count(deps, env, user)?),
-        TemplateQueryMsg::UserCounts { users } => to_binary(&query_user_counts(deps, env, users)?),
-        TemplateQueryMsg::UserCountList {
+         {{app_query_msg}}::Config {} => to_binary(&query_config(deps, env)?),
+         {{app_query_msg}}::UserCount { user } => to_binary(&query_count(deps, env, user)?),
+         {{app_query_msg}}::UserCounts { users } => to_binary(&query_user_counts(deps, env, users)?),
+         {{app_query_msg}}::UserCountList {
             page_token,
             page_size,
         } => to_binary(&query_user_count_list(deps, env, page_token, page_size)?),
