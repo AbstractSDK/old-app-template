@@ -1,6 +1,6 @@
 use cosmwasm_std::{DepsMut, Env, MessageInfo, Response};
 
-use crate::contract::{TemplateAddOn, TemplateResult, ADDON_NAME};
+use crate::contract::{TemplateApp, TemplateResult, ADDON_NAME};
 
 use crate::msg::TemplateInstantiateMsg;
 use crate::state::{Config, CONFIG, COUNTS};
@@ -10,7 +10,7 @@ pub fn instantiate_handler(
     deps: DepsMut,
     _env: Env,
     _info: MessageInfo,
-    _add_on: TemplateAddOn,
+    _app: TemplateApp,
     msg: TemplateInstantiateMsg,
 ) -> TemplateResult {
     // Initial config

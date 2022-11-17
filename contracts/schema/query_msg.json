@@ -3,13 +3,13 @@
   "title": "QueryMsg",
   "oneOf": [
     {
-      "description": "An AddOn query message. Forwards the msg to the associated proxy.",
+      "description": "An App query message. Forwards the msg to the associated proxy.",
       "type": "object",
       "required": [
-        "add_on"
+        "app"
       ],
       "properties": {
-        "add_on": {
+        "app": {
           "$ref": "#/definitions/{{ addon_query_msg }}"
         }
       },

@@ -11,4 +11,4 @@ sed -i '' -e 's/TemplateQueryMsg/ {{addon_query_msg}}/g' ./**/*.rs
 sed -i '' -e 's/TemplateInstantiateMsg/ {{addon_instantiate_msg}}/g' ./**/*.rs
 sed -i '' -e 's/TemplateResult/ {{addon_result}}/g' ./**/*.rs
 sed -i '' -e 's/TemplateError/ {{addon_error}}/g' ./**/*.rs
-sed -i '' -e 's/TemplateAddOn/ {{addon_contract}}/g' ./**/*.rs
+sed -i '' -e 's/TemplateApp/ {{addon_contract}}/g' ./**/*.rs

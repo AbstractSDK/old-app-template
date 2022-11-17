@@ -1,6 +1,6 @@
-use abstract_add_on::export_endpoints;
-use abstract_add_on::AddOnContract;
-use abstract_sdk::EXCHANGE;
+use abstract_app::export_endpoints;
+use abstract_app::AppContract;
+use abstract_sdk::os::EXCHANGE;
 use cosmwasm_std::Response;
 
 use crate::error::TemplateError;
@@ -10,7 +10,7 @@ use crate::msg::{
 };
 
 // As an add-on writer, the only changes necessary to this file are with the handlers and API dependencies on the `TEMPLATE_ADDON` const.
-pub type TemplateAddOn = AddOnContract<
+pub type TemplateApp = AppContract<
     TemplateError,
     TemplateExecuteMsg,
     TemplateInstantiateMsg,
@@ -33,7 +33,7 @@ pub const EXAMPLE_REPLY_ID: u64 = 1;
 /// Used as the foundation for building your addon.
 /// All entrypoints are executed through this const (`instantiate`, `query`, `execute`, `migrate`)
 /// The `dependencies` are Abstract API dependencies in the format: Vec(`namespace:contract_name`)
-const ADDON: TemplateAddOn = TemplateAddOn::new(ADDON_NAME, ADDON_VERSION)
+const ADDON: TemplateApp = TemplateApp::new(ADDON_NAME, ADDON_VERSION)
     .with_instantiate(handlers::instantiate_handler)
     .with_query(handlers::query_handler)
     .with_execute(handlers::execute_handler)
@@ -44,4 +44,4 @@ const ADDON: TemplateAddOn = TemplateAddOn::new(ADDON_NAME, ADDON_VERSION)
 // don't export endpoints when imported as library
 #[cfg(not(feature = "library"))]
 // Export the endpoints for this contract
-export_endpoints!(ADDON, TemplateAddOn);
+export_endpoints!(ADDON, TemplateApp);

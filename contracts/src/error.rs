@@ -1,4 +1,4 @@
-use abstract_add_on::AddOnError;
+use abstract_app::AppError;
 use cosmwasm_std::{OverflowError, StdError};
 use cw_controllers::AdminError;
 use thiserror::Error;
@@ -12,7 +12,7 @@ pub enum TemplateError {
     Admin(#[from] AdminError),
 
     #[error("{0}")]
-    DappError(#[from] AddOnError),
+    DappError(#[from] AppError),
 
     #[error("{0}")]
     OverflowError(#[from] OverflowError),

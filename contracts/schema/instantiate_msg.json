@@ -28,7 +28,7 @@
   "additionalProperties": false,
   "definitions": {
     "BaseInstantiateMsg": {
-      "description": "Used by Module Factory to instantiate AddOn",
+      "description": "Used by Module Factory to instantiate App",
       "type": "object",
       "required": [
         "memory_address"

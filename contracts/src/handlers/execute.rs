@@ -1,6 +1,6 @@
 use cosmwasm_std::{DepsMut, Env, MessageInfo, Response, Uint128};
 
-use crate::contract::{TemplateAddOn, TemplateResult};
+use crate::contract::{TemplateApp, TemplateResult};
 use crate::error::TemplateError;
 use crate::msg::TemplateExecuteMsg;
 use crate::state::{CONFIG, COUNTS};
@@ -10,14 +10,14 @@ pub fn execute_handler(
     deps: DepsMut,
     _env: Env,
     info: MessageInfo,
-    add_on: TemplateAddOn,
+    app: TemplateApp,
     msg: TemplateExecuteMsg,
 ) -> TemplateResult {
     match msg {
         TemplateExecuteMsg::UpdateConfig { max_count } => {
-            update_config(deps, info, add_on, max_count)
+            update_config(deps, info, app, max_count)
         }
-        TemplateExecuteMsg::Increment {} => increment_sender(deps, info, add_on),
+        TemplateExecuteMsg::Increment {} => increment_sender(deps, info, app),
     }
 }
 
@@ -25,7 +25,7 @@ pub fn execute_handler(
 pub fn update_config(
     deps: DepsMut,
     msg_info: MessageInfo,
-    dapp: TemplateAddOn,
+    dapp: TemplateApp,
     max_count: Option<Uint128>,
 ) -> TemplateResult {
     dapp.admin.assert_admin(deps.as_ref(), &msg_info.sender)?;
@@ -51,7 +51,7 @@ pub fn update_config(
 pub fn increment_sender(
     deps: DepsMut,
     msg_info: MessageInfo,
-    _dapp: TemplateAddOn,
+    _dapp: TemplateApp,
 ) -> TemplateResult {
     let user = msg_info.sender;
     let max_count = CONFIG.load(deps.storage)?.max_count;

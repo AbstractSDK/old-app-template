@@ -5,7 +5,7 @@ use abstract_os::VERSION_CONTROL;
 use boot_abstract::version_control::VersionControl;
 use boot_core::{instantiate_daemon_env, networks::juno::JUNO_DAEMON};
 use cosmwasm_std::Addr;
-use interfaces::template::TemplateAddOn;
+use interfaces::template::TemplateApp;
 // use template_addon::msg::ConfigResponse;
 
 use semver::Version;
@@ -27,21 +27,20 @@ pub fn deploy_addon() -> anyhow::Result<()> {
     let version_control_address: String =
         env::var("VERSION_CONTROL_ADDRESS").expect("VERSION_CONTROL_ADDRESS must be set");
 
-    let version_control = VersionControl::new(
-        VERSION_CONTROL,
-        &chain,
-        Some(&Addr::unchecked(version_control_address)),
-    );
+    // let version_control = VersionControl::load(
+    //     &chain,
+    //     &Addr::unchecked(version_control_address),
+    // );
 
     // Upload and register your module
     let addon_name = format!("{}:{}", ADDON_NAMESPACE, ADDON_NAME);
-    let mut add_on = TemplateAddOn::new(&addon_name, &chain);
-    version_control.upload_and_register_module(&mut add_on, &addon_version)?;
+    let mut app = TemplateApp::new(&addon_name, &chain);
+    // version_control.upload_and_register_module(&mut app &addon_version)?;
 
     // Example queries
-    // add_on.query_base(BaseQueryMsg::Admin {})?;
+    // app.query_base(BaseQueryMsg::Admin {})?;
 
-    // let add_on_config: ConfigResponse = add_on.query_addon(TemplateQueryMsg::Config {})?;
+    // let app_config: ConfigResponse = app.query_addon(TemplateQueryMsg::Config {})?;
 
     // TODO: Attach to an OS
 

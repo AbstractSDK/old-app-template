@@ -5,7 +5,7 @@ use std::fmt::Debug;
 use std::ops::{Deref, DerefMut};
 
 /// Allow for access to the functions on the underlying Contract instance
-pub struct AbstractAddOn<
+pub struct AbstractApp<
     Chain: TxHandler,
     ExecuteMsg: Serialize + Debug,
     InitMsg: Serialize + Debug,
@@ -20,7 +20,7 @@ impl<
         I: Serialize + Debug,
         Q: Serialize + Debug,
         M: Serialize + Debug,
-    > Deref for AbstractAddOn<Chain, E, I, Q, M>
+    > Deref for AbstractApp<Chain, E, I, Q, M>
 where
     <Chain as TxHandler>::Response: IndexResponse,
 {
@@ -37,7 +37,7 @@ impl<
         I: Serialize + Debug,
         Q: Serialize + Debug,
         M: Serialize + Debug,
-    > DerefMut for AbstractAddOn<Chain, E, I, Q, M>
+    > DerefMut for AbstractApp<Chain, E, I, Q, M>
 where
     <Chain as TxHandler>::Response: IndexResponse,
 {
@@ -52,7 +52,7 @@ impl<
         I: Serialize + Debug,
         Q: Serialize + Debug,
         M: Serialize + Debug,
-    > AbstractAddOn<Chain, E, I, Q, M>
+    > AbstractApp<Chain, E, I, Q, M>
 where
     <Chain as TxHandler>::Response: IndexResponse,
 {

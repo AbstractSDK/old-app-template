@@ -1,7 +1,7 @@
-use abstract_os::add_on::{BaseExecuteMsg, BaseQueryMsg};
-use abstract_os::middleware;
+use abstract_os::app::{BaseExecuteMsg, BaseQueryMsg};
+use abstract_os::base;
 
-use crate::AbstractAddOn;
+use crate::AbstractApp;
 use boot_core::{BootError, Contract, IndexResponse, TxHandler, TxResponse};
 use cosmwasm_std::Coin;
 use serde::de::DeserializeOwned;
@@ -12,16 +12,16 @@ use template_addon::msg::{
 };
 
 /// Contract wrapper for deploying with BOOT
-/// @TODO don't wrap using middleware here, but in the boot-abstract layer
-pub type TemplateAddOn<Chain> = AbstractAddOn<
+/// @TODO don't wrap using base here, but in the boot-abstract layer
+pub type TemplateApp<Chain> = AbstractApp<
     Chain,
-    middleware::ExecuteMsg<BaseExecuteMsg, TemplateExecuteMsg>,
-    middleware::InstantiateMsg<TemplateInstantiateMsg>,
-    middleware::QueryMsg<BaseQueryMsg, TemplateQueryMsg>,
-    middleware::MigrateMsg<TemplateMigrateMsg>,
+    base::ExecuteMsg<BaseExecuteMsg, TemplateExecuteMsg>,
+    base::InstantiateMsg<TemplateInstantiateMsg>,
+    base::QueryMsg<BaseQueryMsg, TemplateQueryMsg>,
+    base::MigrateMsg<TemplateMigrateMsg>,
 >;
 
-impl<Chain: TxHandler + Clone> TemplateAddOn<Chain>
+impl<Chain: TxHandler + Clone> TemplateApp<Chain>
 where
     TxResponse<Chain>: IndexResponse,
 {
@@ -44,7 +44,7 @@ where
         &self,
         query_msg: TemplateQueryMsg,
     ) -> Result<T, BootError> {
-        self.query(&middleware::QueryMsg::App(query_msg))
+        self.query(&base::QueryMsg::App(query_msg))
     }
 
     /// Temporary helper to query the addon base explicitly
@@ -52,7 +52,7 @@ where
         &self,
         query_msg: BaseQueryMsg,
     ) -> Result<T, BootError> {
-        self.query(&middleware::QueryMsg::Base(query_msg))
+        self.query(&base::QueryMsg::Base(query_msg))
     }
 
     /// Temporary helper to execute the addon explicitly
@@ -61,7 +61,7 @@ where
         execute_msg: TemplateExecuteMsg,
         coins: Option<&[Coin]>,
     ) -> Result<TxResponse<Chain>, BootError> {
-        self.execute(&middleware::ExecuteMsg::App(execute_msg), coins)
+        self.execute(&base::ExecuteMsg::App(execute_msg), coins)
     }
 
     /// Temporary helper to execute the addon base explicitly
@@ -70,6 +70,6 @@ where
         execute_msg: BaseExecuteMsg,
         coins: Option<&[Coin]>,
     ) -> Result<TxResponse<Chain>, BootError> {
-        self.execute(&middleware::ExecuteMsg::Base(execute_msg), coins)
+        self.execute(&base::ExecuteMsg::Base(execute_msg), coins)
     }
 }

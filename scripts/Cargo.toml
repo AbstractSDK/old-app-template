@@ -7,9 +7,9 @@ edition = "2021"
 
 [dependencies]
 interfaces = { path = "../interfaces" }
-boot-core = "0.1.1"
-boot-plus = "0.1.1"
-boot-abstract = "0.2.0-beta.2"
+boot-core = { path = "../../../Abstract/BOOT/boot-core" }
+boot-plus = { path = "../../../Abstract/BOOT/boot-plus" }
+boot-abstract = { path = "../../../Abstract/contracts/packages/boot-abstract" }
 log = "0.4.14"
 cosmwasm-std = { version = "1.1" }
 anyhow = "1.0"
