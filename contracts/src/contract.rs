@@ -9,7 +9,7 @@ use crate::msg::{
      {{app_execute_msg}},  {{app_instantiate_msg}},  {{app_migrate_msg}},  {{app_query_msg}},
 };
 
-// As an add-on writer, the only changes necessary to this file are with the handlers and API dependencies on the `TEMPLATE_ADDON` const.
+// As an app writer, the only changes necessary to this file are with the handlers and API dependencies on the `TEMPLATE_APP` const.
 pub type  {{app_contract}} = AppContract<
      {{app_error}},
      {{app_execute_msg}},
@@ -21,11 +21,11 @@ pub type  {{app_contract}} = AppContract<
 pub type  {{app_result}} = Result<Response,  {{app_error}}>;
 
 /// The namespace for the app, like "abstract" -> "abstract:template"
-pub const ADDON_NAMESPACE: &str = " {{username}}";
+pub const APP_NAMESPACE: &str = " {{username}}";
 /// The name of the app, excluding the namespace
-pub const ADDON_NAME: &str = " {{app_name}}";
+pub const APP_NAME: &str = " {{app_name}}";
 /// The initial version of the app, which will use the package version if not altered
-const ADDON_VERSION: &str = env!("CARGO_PKG_VERSION");
+const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Expected replies
 pub const EXAMPLE_REPLY_ID: u64 = 1;
@@ -33,7 +33,7 @@ pub const EXAMPLE_REPLY_ID: u64 = 1;
 /// Used as the foundation for building your app.
 /// All entrypoints are executed through this const (`instantiate`, `query`, `execute`, `migrate`)
 /// The `dependencies` are Abstract API dependencies in the format: Vec(`namespace:contract_name`)
-const ADDON:  {{app_contract}} =  {{app_contract}}::new(ADDON_NAME, ADDON_VERSION)
+const APP:  {{app_contract}} =  {{app_contract}}::new(APP_NAME, APP_VERSION)
     .with_instantiate(handlers::instantiate_handler)
     .with_query(handlers::query_handler)
     .with_execute(handlers::execute_handler)
@@ -44,4 +44,4 @@ const ADDON:  {{app_contract}} =  {{app_contract}}::new(ADDON_NAME, ADDON_VERSIO
 // don't export endpoints when imported as library
 #[cfg(not(feature = "library"))]
 // Export the endpoints for this contract
-export_endpoints!(ADDON,  {{app_contract}});
+export_endpoints!(APP,  {{app_contract}});

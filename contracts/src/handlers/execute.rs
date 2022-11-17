@@ -5,7 +5,7 @@ use crate::error:: {{app_error}};
 use crate::msg:: {{app_execute_msg}};
 use crate::state::{CONFIG, COUNTS};
 
-/// Handle the ` {{app_execute_msg}}`s sent to this add-on.
+/// Handle the ` {{app_execute_msg}}`s sent to this app.
 pub fn execute_handler(
     deps: DepsMut,
     _env: Env,

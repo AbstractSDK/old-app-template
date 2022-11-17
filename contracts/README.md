@@ -3,7 +3,7 @@
 ## File Structure
 - [`src`](src) - source code
   - [`contract.rs`](src/contract.rs) - contract implementation with the top-level handlers for `instantiate`, `query`, `execute`, `migrate`
-  - [`handlers`](src/handlers) - contains the handlers for the add-on
+  - [`handlers`](src/handlers) - contains the handlers for the app
     - [`instantiate.rs`](src/handlers/instantiate.rs) - contains the msg handlers for the `instantiate` entrypoint
     - [`query.rs`](src/handlers/query.rs) - contains the msg handlers for the `query` entrypoint
     - [`commands.rs`](src/handlers/execute.rs) - contains the msg handlers for the `execute` entrypoint

@@ -1,6 +1,6 @@
 use cosmwasm_std::{DepsMut, Env, MessageInfo, Response};
 
-use crate::contract::{ {{app_contract}},  {{app_result}}, ADDON_NAME};
+use crate::contract::{ {{app_contract}},  {{app_result}}, APP_NAME};
 
 use crate::msg:: {{app_instantiate_msg}};
 use crate::state::{Config, CONFIG, COUNTS};
@@ -30,5 +30,5 @@ pub fn instantiate_handler(
 
     Ok(Response::new()
         .add_attribute("action", "instantiate")
-        .add_attribute("contract", ADDON_NAME))
+        .add_attribute("contract", APP_NAME))
 }

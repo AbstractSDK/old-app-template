@@ -1,6 +1,6 @@
-# Abstract Add-On Module Template
-This is a repository for developing an add-on using [Abstract-OS](https://abstract.money).
-It includes a template for the add-on module, as well as deployment scripts.
+# Abstract App Module Template
+This is a repository for developing an app using [Abstract-OS](https://abstract.money).
+It includes a template for the app module, as well as deployment scripts.
 
 ## Features
 - Abstracted handlers for `instantiate`, `query`, `execute`, `migrate`
@@ -17,9 +17,9 @@ Fork this repository and use the `untemplated` branch.
 
 
 ## Commands
-- `cargo build`: Build the add-on
+- `cargo build`: Build the app
 - `cargo test`: Run the tests
-- `cargo deploy`: Deploy the add-on to Abstract Version Control
-- `cargo wasm`: Compile the add-on to wasm
+- `cargo deploy`: Deploy the app to Abstract Version Control
+- `cargo wasm`: Compile the app to wasm
 - `cargo doc`: Generate the documentation
 - `cargo clippy`: Run the linter

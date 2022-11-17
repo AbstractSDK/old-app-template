@@ -9,16 +9,16 @@ use interfaces::template:: {{app_contract}};
 // use template_app::msg::ConfigResponse;
 
 use semver::Version;
-use template_app::contract::{ADDON_NAME, ADDON_NAMESPACE};
+use template_app::contract::{APP_NAME, APP_NAMESPACE};
 
 // To deploy the app we need to get the memory and then register it
 // We can then deploy a test OS that uses that new app
 
-const ADDON_VERSION: &str = env!("CARGO_PKG_VERSION");
+const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 pub fn deploy_app() -> anyhow::Result<()> {
     let network = JUNO_DAEMON;
-    let _app_version = Version::parse(ADDON_VERSION)?;
+    let _app_version = Version::parse(APP_VERSION)?;
 
     // Setup the environment
     let (_, _sender, chain) = instantiate_daemon_env(network)?;
@@ -33,7 +33,7 @@ pub fn deploy_app() -> anyhow::Result<()> {
     // );
 
     // Upload and register your module
-    let app_name = format!("{}:{}", ADDON_NAMESPACE, ADDON_NAME);
+    let app_name = format!("{}:{}", APP_NAMESPACE, APP_NAME);
     let _app =  {{app_contract}}::new(&app_name, &chain);
     // version_control.upload_and_register_module(&mut app &app_version)?;
 
