@@ -3,7 +3,7 @@ use std::env;
 
 
 
-use boot_core::{instantiate_daemon_env, networks::juno::JUNO_DAEMON};
+use boot_core::{instantiate_daemon_env, networks::juno::UNI_5};
 
 use interfaces::template:: {{app_contract}};
 // use template_app::msg::ConfigResponse;
@@ -17,7 +17,7 @@ use template_app::contract::{APP_NAME, APP_NAMESPACE};
 const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 pub fn deploy_app() -> anyhow::Result<()> {
-    let network = JUNO_DAEMON;
+    let network = UNI_5;
     let _app_version = Version::parse(APP_VERSION)?;
 
     // Setup the environment
