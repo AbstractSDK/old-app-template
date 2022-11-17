@@ -13,7 +13,7 @@ Use the template using [`cargo generate`](https://cargo-generate.github.io/cargo
 cargo generate gh:Abstract-OS/app-module-template -b template
 ```
 ### Option 2:
-Fork this repository and use the `untemplated` branch.
+Fork this repository
 
 
 ## Commands
