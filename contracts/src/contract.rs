@@ -21,9 +21,9 @@ pub type  {{app_contract}} = AppContract<
 pub type  {{app_result}} = Result<Response,  {{app_error}}>;
 
 /// The namespace for the app, like "abstract" -> "abstract:template"
-pub const APP_NAMESPACE: &str = " {{username}}";
+pub const APP_NAMESPACE: &str = "{{username}}";
 /// The name of the app, excluding the namespace
-pub const APP_NAME: &str = " {{app_name}}";
+pub const APP_NAME: &str = "{{app_name}}";
 /// The initial version of the app, which will use the package version if not altered
 const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
 
