@@ -1,4 +1,4 @@
-use crate::contract::TemplateAddOn;
+use crate::contract::TemplateApp;
 use crate::msg::{ConfigResponse, TemplateQueryMsg, UserCountResponse, UserCountsResponse};
 use crate::state::{CONFIG, COUNTS};
 use cosmwasm_std::{to_binary, Addr, Binary, Deps, Env, Order, StdResult, Uint128};
@@ -7,11 +7,11 @@ use cw_storage_plus::Bound;
 const DEFAULT_PAGE_SIZE: u8 = 5;
 const MAX_PAGE_SIZE: u8 = 20;
 
-/// Handle queries sent to this addon.
+/// Handle queries sent to this app.
 pub fn query_handler(
     deps: Deps,
     env: Env,
-    _add_on: &TemplateAddOn,
+    _app: &TemplateApp,
     msg: TemplateQueryMsg,
 ) -> StdResult<Binary> {
     match msg {
@@ -73,7 +73,7 @@ pub fn query_user_count_list(
     let res: Result<Vec<(Addr, Uint128)>, _> = COUNTS
         .range(deps.storage, start_bound, None, Order::Ascending)
         .take(limit)
-        .map(|item| item.map(|(addr, count)| (addr.into(), count)))
+        .map(|item| item.map(|(addr, count)| (addr, count)))
         .collect();
 
     Ok(UserCountsResponse { counts: res? })

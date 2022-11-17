@@ -1,6 +1,6 @@
 [package]
 # TODO rename
-name = "template-addon-name"
+name = "template-app-name"
 version.workspace = true
 authors.workspace = true
 description.workspace = true
@@ -37,5 +37,5 @@ thiserror = { version = "1.0.21" }
 semver = "1.0.0"
 lazy_static = "1.4.0"
 
-abstract-add-on = { version = "0.2.0-beta.2", features = ["library"] }
-abstract-sdk = "0.2.0-beta.2"
+abstract-app = { path = "../../../Abstract/contracts/packages/abstract-app", features = ["library"] }
+abstract-sdk = { path = "../../../Abstract/contracts/packages/abstract-sdk" }

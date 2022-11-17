@@ -19,7 +19,7 @@
       "description": "custom migrate msg attributes",
       "allOf": [
         {
-          "$ref": "#/definitions/{{ addon_migrate_msg }}"
+          "$ref": "#/definitions/{{ app_migrate_msg }}"
         }
       ]
     }
@@ -30,7 +30,7 @@
       "description": "An empty struct that serves as a placeholder in different places, such as contracts that don't set a custom message.\n\nIt is designed to be expressable in correct JSON and JSON Schema but contains no meaningful data. Previously we used enums without cases, but those cannot represented as valid JSON Schema (https://github.com/CosmWasm/cosmwasm/issues/451)",
       "type": "object"
     },
-    "{{ addon_migrate_msg }}": {
+    "{{ app_migrate_msg }}": {
       "description": "Migrate msg",
       "type": "object",
       "additionalProperties": false
