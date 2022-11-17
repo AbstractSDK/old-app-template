@@ -6,4 +6,4 @@ deploy = "run --package scripts --bin deploy_app"
 #optimize =
 
 [env]
-ABSTRACT_VERSION = "0.2.0-beta.2"
+ABSTRACT_VERSION = "0.2.0-beta.3"
