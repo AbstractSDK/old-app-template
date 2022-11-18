@@ -1,15 +1,15 @@
 use std::env;
-
-
+use abstract_boot::version_control::VersionControl;
 
 
 use boot_core::{instantiate_daemon_env, networks::juno::UNI_5};
+use cosmwasm_std::Addr;
 
 use interfaces::template::TemplateApp;
 // use template_app::msg::ConfigResponse;
 
 use semver::Version;
-use template_app::contract::{APP_NAME, APP_NAMESPACE};
+use template_app::contract::{MODULE_NAME, MODULE_NAMESPACE};
 
 // To deploy the app we need to get the memory and then register it
 // We can then deploy a test OS that uses that new app
@@ -27,13 +27,13 @@ pub fn deploy_app() -> anyhow::Result<()> {
     let _version_control_address: String =
         env::var("VERSION_CONTROL_ADDRESS").expect("VERSION_CONTROL_ADDRESS must be set");
 
-    // let version_control = VersionControl::load(
-    //     &chain,
-    //     &Addr::unchecked(version_control_address),
-    // );
+    let version_control = VersionControl::load(
+        &chain,
+        &Addr::unchecked(version_control_address),
+    );
 
     // Upload and register your module
-    let app_name = format!("{}:{}", APP_NAMESPACE, APP_NAME);
+    let app_name = format!("{}:{}", MODULE_NAMESPACE, MODULE_NAME);
     let _app = TemplateApp::new(&app_name, &chain);
     // version_control.upload_and_register_module(&mut app &app_version)?;
 
