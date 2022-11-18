@@ -21,11 +21,11 @@ pub type  {{app_contract}} = AppContract<
 pub type  {{app_result}} = Result<Response,  {{app_error}}>;
 
 /// The namespace for the app, like "abstract" -> "abstract:template"
-pub const APP_NAMESPACE: &str = "{{username}}";
+pub const MODULE_NAMESPACE: &str = "{{username}}";
 /// The name of the app, excluding the namespace
-pub const APP_NAME: &str = "{{app_name}}";
+pub const MODULE_NAME: &str = "{{app_name}}";
 /// The initial version of the app, which will use the package version if not altered
-const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
+const MODULE_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Expected replies
 pub const EXAMPLE_REPLY_ID: u64 = 1;
@@ -33,7 +33,7 @@ pub const EXAMPLE_REPLY_ID: u64 = 1;
 /// Used as the foundation for building your app.
 /// All entrypoints are executed through this const (`instantiate`, `query`, `execute`, `migrate`)
 /// The `dependencies` are Abstract API dependencies in the format: Vec(`namespace:contract_name`)
-const APP:  {{app_contract}} =  {{app_contract}}::new(APP_NAME, APP_VERSION)
+const APP: {{app_contract}} = {{app_contract}}::new(MODULE_NAME, MODULE_VERSION)
     .with_instantiate(handlers::instantiate_handler)
     .with_query(handlers::query_handler)
     .with_execute(handlers::execute_handler)

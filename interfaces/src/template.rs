@@ -6,7 +6,7 @@ use boot_core::{BootError, Contract, IndexResponse, TxHandler, TxResponse};
 use cosmwasm_std::Coin;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-use template_app::contract::APP_NAME;
+use template_app::contract::MODULE_NAME;
 use template_app::msg::{
      {{app_execute_msg}},  {{app_instantiate_msg}},  {{app_migrate_msg}},  {{app_query_msg}},
 };
@@ -27,7 +27,7 @@ where
 {
     pub fn new(name: &str, chain: &Chain) -> Self {
         Self(
-            Contract::new(name, chain).with_wasm_path(APP_NAME),
+            Contract::new(name, chain).with_wasm_path(MODULE_NAME),
             // Uncomment to deploy and use contracts with mock implementations
             // .with_mock(Box::new(
             //     ContractWrapper::new_with_empty(
