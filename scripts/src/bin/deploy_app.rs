@@ -18,13 +18,12 @@ const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 pub fn deploy_app() -> anyhow::Result<()> {
     let network = UNI_5;
-    let _app_version = Version::parse(APP_VERSION)?;
 
     // Setup the environment
     let (_, _sender, chain) = instantiate_daemon_env(network)?;
 
     // Load Abstract Version Control
-    let _version_control_address: String =
+    let version_control_address: String =
         env::var("VERSION_CONTROL_ADDRESS").expect("VERSION_CONTROL_ADDRESS must be set");
 
     let version_control = VersionControl::load(
@@ -34,8 +33,9 @@ pub fn deploy_app() -> anyhow::Result<()> {
 
     // Upload and register your module
     let app_name = format!("{}:{}", MODULE_NAMESPACE, MODULE_NAME);
-    let _app = TemplateApp::new(&app_name, &chain);
-    // version_control.upload_and_register_module(&mut app &app_version)?;
+    let mut app = TemplateApp::new(&app_name, &chain);
+    let app_version = Version::parse(APP_VERSION)?;
+    version_control.upload_and_register_module(&mut app, &app_version)?;
 
     // Example queries
     // app.query_base(BaseQueryMsg::Admin {})?;
