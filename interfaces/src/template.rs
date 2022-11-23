@@ -1,27 +1,26 @@
 use abstract_os::app::{BaseExecuteMsg, BaseQueryMsg};
-use abstract_os::base;
-
-use crate::AbstractApp;
-use boot_core::{BootError, Contract, IndexResponse, TxHandler, TxResponse};
+use abstract_os::{app, base, extension};
+use boot_core::{BootEnvironment, BootError, Contract, IndexResponse, TxResponse};
+use boot_core::prelude::{boot_contract, BootExecute, BootQuery};
 use cosmwasm_std::Coin;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
+
 use template_app::contract::MODULE_NAME;
 use template_app::msg::{
     TemplateExecuteMsg, TemplateInstantiateMsg, TemplateMigrateMsg, TemplateQueryMsg,
 };
 
-/// Contract wrapper for deploying with BOOT
-/// @TODO don't wrap using base here, but in the abstract-boot layer
-pub type TemplateApp<Chain> = AbstractApp<
-    Chain,
-    base::ExecuteMsg<BaseExecuteMsg, TemplateExecuteMsg>,
-    base::InstantiateMsg<TemplateInstantiateMsg>,
-    base::QueryMsg<BaseQueryMsg, TemplateQueryMsg>,
-    base::MigrateMsg<TemplateMigrateMsg>,
->;
+type AppInstantiateMsg = app::InstantiateMsg<TemplateInstantiateMsg>;
+type AppExecuteMsg = app::ExecuteMsg<TemplateExecuteMsg>;
+type AppQueryMsg = app::QueryMsg<TemplateQueryMsg>;
+type AppMigrateMsg = app::MigrateMsg<TemplateMigrateMsg>;
 
-impl<Chain: TxHandler + Clone> TemplateApp<Chain>
+/// Contract wrapper for deploying with BOOT
+#[boot_contract(AppInstantiateMsg, AppExecuteMsg, AppQueryMsg, AppMigrateMsg)]
+pub struct TemplateApp<Chain>;
+
+impl<Chain: BootEnvironment> TemplateApp<Chain>
 where
     TxResponse<Chain>: IndexResponse,
 {
@@ -44,7 +43,7 @@ where
         &self,
         query_msg: TemplateQueryMsg,
     ) -> Result<T, BootError> {
-        self.query(&base::QueryMsg::App(query_msg))
+        self.query(&app::QueryMsg::App(query_msg))
     }
 
     /// Temporary helper to query the app base explicitly
@@ -52,7 +51,7 @@ where
         &self,
         query_msg: BaseQueryMsg,
     ) -> Result<T, BootError> {
-        self.query(&base::QueryMsg::Base(query_msg))
+        self.query(&app::QueryMsg::Base(query_msg))
     }
 
     /// Temporary helper to execute the app explicitly
@@ -61,7 +60,7 @@ where
         execute_msg: TemplateExecuteMsg,
         coins: Option<&[Coin]>,
     ) -> Result<TxResponse<Chain>, BootError> {
-        self.execute(&base::ExecuteMsg::App(execute_msg), coins)
+        self.execute(&app::ExecuteMsg::App(execute_msg), coins)
     }
 
     /// Temporary helper to execute the app base explicitly
@@ -70,6 +69,6 @@ where
         execute_msg: BaseExecuteMsg,
         coins: Option<&[Coin]>,
     ) -> Result<TxResponse<Chain>, BootError> {
-        self.execute(&base::ExecuteMsg::Base(execute_msg), coins)
+        self.execute(&app::ExecuteMsg::Base(execute_msg), coins)
     }
 }

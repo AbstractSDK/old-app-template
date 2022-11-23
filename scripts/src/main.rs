@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world!");
+    panic!("Scripts are intended to be run with `cargo run --bin`");
 }

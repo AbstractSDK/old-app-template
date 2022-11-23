@@ -1,15 +1,17 @@
 use std::env;
+
 use abstract_boot::version_control::VersionControl;
-
-
-use boot_core::{instantiate_daemon_env, networks::juno::UNI_5};
+use abstract_os::app;
+use abstract_os::app::BaseQueryMsg;
+use boot_core::networks;
+use boot_core::prelude::{instantiate_daemon_env, ContractInstance};
 use cosmwasm_std::Addr;
+use semver::Version;
 
 use interfaces::template::TemplateApp;
-// use template_app::msg::ConfigResponse;
-
-use semver::Version;
 use template_app::contract::{MODULE_NAME, MODULE_NAMESPACE};
+
+// use template_app::msg::ConfigResponse;
 
 // To deploy the app we need to get the memory and then register it
 // We can then deploy a test OS that uses that new app
@@ -17,7 +19,7 @@ use template_app::contract::{MODULE_NAME, MODULE_NAMESPACE};
 const APP_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 pub fn deploy_app() -> anyhow::Result<()> {
-    let network = UNI_5;
+    let network = networks::UNI_5;
 
     // Setup the environment
     let (_, _sender, chain) = instantiate_daemon_env(network)?;
@@ -35,7 +37,7 @@ pub fn deploy_app() -> anyhow::Result<()> {
     let app_name = format!("{}:{}", MODULE_NAMESPACE, MODULE_NAME);
     let mut app = TemplateApp::new(&app_name, &chain);
     let app_version = Version::parse(APP_VERSION)?;
-    version_control.upload_and_register_module(&mut app, &app_version)?;
+    version_control.upload_and_register_module(&mut app.as_instance_mut(), &app_version)?;
 
     // Example queries
     // app.query_base(BaseQueryMsg::Admin {})?;
