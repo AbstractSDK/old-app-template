@@ -1,6 +1,6 @@
 # Abstract App Module Template
 This is a repository for developing an app using [Abstract-OS](https://abstract.money).
-It includes a template for the app module, as well as deployment scripts.
+It includes a template for the app module, deployment interfaces, and deployment scripts.
 
 ## Features
 - Abstracted handlers for `instantiate`, `query`, `execute`, `migrate`, and `replies`
@@ -13,10 +13,10 @@ It includes a template for the app module, as well as deployment scripts.
 ### Option 1
 Use the template using [`cargo generate`](https://cargo-generate.github.io/cargo-generate/index.html)
 ```shell
-cargo generate gh:Abstract-OS/app-module-template -b template
+cargo generate gh:Abstract-OS/app-template -b template
 ```
 ### Option 2:
-Fork this repository
+Fork this repository and delete `template-scripts`, then rename the appropriate variables.
 
 
 ## Commands
